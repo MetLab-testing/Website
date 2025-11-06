@@ -1,215 +1,263 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>MetLab Testing and Analysis Services</title>
-  <meta name="description" content="Mechanical, Metallurgical, Corrosion & Coating Testings— MetLab" />
-  <style>
-    :root {
-      --accent: #0b5cff;
-      --muted: #666;
-      --card: #fff;
-      --bg: #f4f6f8;
-    }
-    * { box-sizing: border-box; }
-    body { margin:0; font-family: Inter,system-ui,Segoe UI,Roboto,Arial; line-height:1.5; color:#222; background:var(--bg); }
-    a { text-decoration:none; color:inherit; }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MetLab Testing and Analysis Services</title>
+<meta name="description" content="Mechanical, Metallurgical, Corrosion & Coating Testings— MetLab">
+<style>
+:root {
+  --accent:#0b5cff;
+  --muted:#666;
+  --card:#fff;
+  --bg:#f4f6f8;
+}
+/* Global */
+* {box-sizing:border-box;}
+body {margin:0;font-family:Inter, system-ui, Segoe UI, Roboto, Arial;line-height:1.5;color:#222;background:var(--bg);}
+a {text-decoration:none;color:inherit;}
 
-    /* Sidebar */
-    .sidebar { position: fixed; left:0; top:0; width:240px; height:100vh; background-color:#1a1a1a; color:#fff; display:flex; flex-direction:column; align-items:flex-start; padding:20px; z-index:1000; }
-    .sidebar .brand { margin-bottom:20px; width:100%; text-align:center; }
-    .sidebar .brand .logo { width:180px; height:auto; display:block; margin:0 auto 10px; }
-    .sidebar .contact-info { font-size:14px; line-height:1.6; text-align:left; color:#ddd; width:100%; }
-    .sidebar .contact-info strong { color:var(--accent); }
+/* Sidebar */
+.sidebar{position:fixed;left:0;top:0;width:240px;height:100vh;background:#1a1a1a;color:#fff;display:flex;flex-direction:column;align-items:flex-start;padding:20px;z-index:1000;}
+.sidebar .brand{margin-bottom:20px;width:100%;text-align:center;}
+.sidebar .brand .logo{width:180px;height:auto;margin:0 auto 10px auto;display:block;}
+.sidebar .contact-info{font-size:14px;line-height:1.6;text-align:left;color:#ddd;width:100%;}
+.sidebar .contact-info strong{color:var(--accent);}
 
-    /* Top navigation */
-    header { position:fixed; left:240px; right:0; top:0; height:60px; background:#fff; display:flex; align-items:center; justify-content:flex-start; padding:0 30px; border-bottom:1px solid #e6e9ee; z-index:900; }
-    header .navlinks { display:flex; gap:20px; }
-    header .navlinks a { font-weight:600; color:var(--muted); padding:8px 12px; border-radius:6px; transition:0.3s; }
-    header .navlinks a:hover { background:#f0f0f0; }
-    header .navlinks .cta { background:var(--accent); color:#fff; }
+/* Header navigation */
+header{position:fixed;left:240px;right:0;top:0;height:60px;background:#fff;display:flex;align-items:center;justify-content:flex-start;padding:0 30px;border-bottom:1px solid #e6e9ee;z-index:900;}
+header .navlinks{display:flex;gap:20px;}
+header .navlinks a{font-weight:600;color:var(--muted);padding:8px 12px;border-radius:6px;transition:background 0.3s;}
+header .navlinks a:hover{background:#f0f0f0;}
+header .navlinks .cta{background:var(--accent);color:#fff;}
 
-    /* Main content */
-    main { margin-left:240px; padding:100px 40px 40px 40px; }
-    html { scroll-padding-top:80px; }
+/* Main */
+main{margin-left:240px;padding:100px 40px 40px 40px;}
+html{scroll-padding-top:80px;}
 
-    /* Hero */
-    .hero { display:flex; gap:24px; align-items:flex-start; flex-wrap:wrap; margin-bottom:40px; }
-    .hero-left { flex:1; }
-    .hero h1 { font-size:32px; margin:0 0 12px; color:var(--accent); }
-    .hero p { margin:0 0 16px; color:var(--muted); font-size:16px; }
-    .cta { background:var(--accent); color:#fff; padding:10px 16px; border-radius:8px; font-weight:600; display:inline-block; }
+/* Hero */
+.hero{display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap;margin-bottom:40px;}
+.hero-left{flex:1;}
+.hero h1{font-size:32px;margin:0 0 12px;color:var(--accent);}
+.hero p{margin:0 0 16px;color:var(--muted);font-size:16px;}
+.cta{background:var(--accent);color:#fff;padding:10px 16px;border-radius:8px;font-weight:600;display:inline-block;}
 
-    /* Cards */
-    .cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:16px; margin-top:18px; }
-    .card { background:var(--card); padding:14px; border-radius:10px; box-shadow:0 6px 18px rgba(15,25,40,.05); }
-    .card strong { color:var(--accent); }
+/* Cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:18px;}
+.card{background:var(--card);padding:14px;border-radius:10px;box-shadow:0 6px 18px rgba(15,25,40,.05);}
+.card strong{color:var(--accent);}
 
-    /* Sections */
-    h2.section { margin-top:40px; font-size:28px; color:var(--accent); border-bottom:2px solid var(--accent); display:inline-block; padding-bottom:4px; }
-    #about .card p { line-height:1.8; font-size:16px; margin-bottom:12px; }
-    #about .card p strong { color:var(--accent); font-weight:700; }
-    #about .card p span.highlight { color:var(--accent); font-weight:600; }
+/* Section titles */
+h2.section{margin-top:40px;font-size:28px;color:var(--accent);border-bottom:2px solid var(--accent);display:inline-block;padding-bottom:4px;}
 
-    /* Forms */
-    form { display:grid; gap:10px; }
-    input, textarea, select, button { padding:10px; border-radius:8px; border:1px solid #dde4ee; }
-    textarea { min-height:120px; }
-    .two-col { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+/* About */
+#about .card p{line-height:1.8;font-size:16px;margin-bottom:12px;}
+#about .card p strong{color:var(--accent);font-weight:700;}
+#about .card p span.highlight{color:var(--accent);font-weight:600;}
 
-    /* Portal */
-    #portal .card { background-color:#f8f9fa; border:1px solid #ddd; }
-    #portal .muted { color:#555; }
+/* Forms */
+form{display:grid;gap:10px;}
+input,textarea,select,button{padding:10px;border-radius:8px;border:1px solid #dde4ee;}
+textarea{min-height:120px;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 
-    footer { margin-top:40px; padding:28px 0; color:var(--muted); }
+/* Feedback */
+#feedback .card{padding:18px;}
 
-    @media(max-width:720px){
-      body{flex-direction:column;}
-      .sidebar{position:relative;width:100%;height:auto;flex-direction:row;justify-content:space-between;padding:10px 20px;}
-      header{left:0;top:auto;width:100%;height:auto;padding:10px 20px;flex-wrap:wrap;justify-content:center;}
-      header .navlinks{flex-wrap:wrap;justify-content:center;gap:10px;margin-top:8px;}
-      main{margin-left:0;padding:20px;}
-    }
+/* Client Portal */
+#portal .card{background-color:#f8f9fa;border:1px solid #ddd;}
+#portal .muted{color:#555;}
 
-  </style>
+/* Footer */
+footer{margin-top:40px;padding:28px 0;color:var(--muted);}
+
+/* Capability card colors & font size */
+#capabilities .card:nth-child(1){background-color:#e3f2fd;} /* Mechanical */
+#capabilities .card:nth-child(2){background-color:#fff3e0;} /* Metallurgical */
+#capabilities .card:nth-child(3){background-color:#e8f5e9;font-size:14px;} /* Corrosion */
+#capabilities .card:nth-child(4){background-color:#f3e5f5;font-size:14px;} /* Coating */
+
+/* Responsive */
+@media(max-width:720px){
+  body{flex-direction:column;}
+  .sidebar{position:relative;width:100%;height:auto;flex-direction:row;justify-content:space-between;padding:10px 20px;}
+  header{left:0;top:auto;width:100%;height:auto;padding:10px 20px;flex-wrap:wrap;justify-content:center;}
+  header .navlinks{flex-wrap:wrap;justify-content:center;gap:10px;margin-top:8px;}
+  main{margin-left:0;padding:20px;}
+}
+</style>
 </head>
 <body>
 
-  <!-- Sidebar -->
-  <aside class="sidebar">
-    <div class="brand">
-      <img src="logo.png" alt="MetLab Logo" class="logo">
-    </div>
-    <div class="contact-info">
-      <p><strong>Contact Person:</strong> Operations Manager</p>
-      <p><strong>Phone No.:</strong> +974 44XXXXXX</p>
-      <p><strong>Mobile:</strong> +974 XXXXXXXX</p>
-      <p><strong>Email:</strong> Info.Qatar@xxxx.com</p>
-    </div>
-  </aside>
+<!-- Sidebar -->
+<aside class="sidebar">
+  <div class="brand"><img src="logo.png" alt="MetLab Logo" class="logo"></div>
+  <div class="contact-info">
+    <p><strong>Contact Person:</strong> Operations Manager</p>
+    <p><strong>Phone No.:</strong> +974 44XXXXXX</p>
+    <p><strong>Mobile:</strong> +974 XXXXXXXX</p>
+    <p><strong>Email:</strong> Info.Qatar@xxxx.com</p>
+  </div>
+</aside>
 
-  <!-- Top Navigation -->
-  <header>
-    <nav class="navlinks">
-      <a href="#about">About</a>
-      <a href="#capabilities">Capabilities</a>
-      <a href="#certifications">Certifications & Approvals</a>
-      <a href="#careers">Careers</a>
-      <a href="#feedback">Feedback</a>
-      <a href="#portal" class="cta">Client Portal</a>
-    </nav>
-  </header>
+<!-- Header -->
+<header>
+  <nav class="navlinks">
+    <a href="#about">About</a>
+    <a href="#capabilities">Capabilities</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#careers">Careers</a>
+    <a href="#feedback">Feedback</a>
+    <a href="#portal" class="cta">Client Portal</a>
+  </nav>
+</header>
 
-  <main>
-    <!-- HERO -->
-    <section class="hero" id="home">
-      <div class="hero-left">
-        <h1>Reliable Mechanical, Metallurgical, Corrosion & Coating Testing</h1>
-        <p>Local laboratory support for <span class="highlight">Qatar’s oil & gas, marine, rail, and manufacturing sectors</span> — precision testing, fast turnaround, accredited processes.</p>
-        <a class="cta" href="#capabilities">Explore Testing Capabilities</a>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about">
-      <h2 class="section">About MetLab</h2>
-      <div class="card">
-        <p><strong>MetLab Testing and Analysis Services</strong> is a proudly Qatari-owned materials testing laboratory, established to meet the growing technical demands of the nation’s industrial sector. We specialize in <span class="highlight">corrosion testing, mechanical testing, coating tests, and metallurgical analysis</span> — providing accurate results that empower engineering and quality assurance teams across Qatar.</p>
-        <p>At MetLab, we are deeply committed to supporting Qatar’s national interests by offering high-quality services. Our operations align with the <span class="highlight">Qatar National Vision 2030</span>, contributing to industrial self-reliance, safety, and sustainability goals.</p>
-        <p>Driven by <span class="highlight">precision, integrity, and technical excellence</span>, MetLab strives to be a trusted partner to the oil & gas, petrochemical, marine, and manufacturing industries.</p>
-      </div>
-    </section>
-
-    <!-- CAPABILITIES -->
-    <section id="capabilities">
-      <h2 class="section">Testing Capabilities</h2>
+<main>
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-left">
+      <h1>Reliable Mechanical, Metallurgical, Corrosion & Coating Testing</h1>
+      <p>Local laboratory support for <span class="highlight">Qatar’s oil & gas, marine, rail, and manufacturing sectors</span> — precision testing, fast turnaround, accredited processes.</p>
+      <a class="cta" href="#capabilities">Explore Testing Capabilities</a>
       <div class="cards">
-        <div class="card" style="background-color:#e3f2fd;"><h3>Mechanical Testing</h3><ul><li>Tensile Testing</li><li>Bend Testing</li><li>Charpy Impact</li><li>Fracture Toughness</li></ul></div>
-        <div class="card" style="background-color:#fff3e0;"><h3>Metallurgical Analysis</h3><ul><li>Microstructure</li><li>Macro Examination</li><li>Grain Size Analysis</li></ul></div>
-        <div class="card" style="background-color:#e8f5e9; font-size:14px;"><h3>Corrosion Testing</h3><ul><li>Salt Spray / Fog Test</li><li>Electrochemical Testing</li><li>Stress Corrosion Cracking (SCC)</li><li>Pitting / Crevice Corrosion</li><li>Intergranular Corrosion (IGC)</li><li>Hydrogen Induced Cracking (HIC)</li></ul></div>
-        <div class="card" style="background-color:#f3e5f5; font-size:14px;"><h3>Coating Analysis</h3><ul><li>Coating Thickness Measurement</li><li>Adhesion & Pull-off Tests</li><li>Hardness & Abrasion Resistance</li><li>Peel Testing</li><li>Wear & Erosion Resistance</li></ul></div>
+        <div class="card"><strong>Fast Turnaround</strong><div class="muted">Streamlined workflows for quicker results</div></div>
+        <div class="card"><strong>Accurate Reports</strong><div class="muted">Clear, detailed test reports suitable for certification</div></div>
+        <div class="card"><strong>Secure Client Portal</strong><div class="muted">Private access to your reports via OTP-based access</div></div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- CERTIFICATIONS & APPROVALS -->
-    <section id="certifications">
-      <h2 class="section">Certifications & Approvals</h2>
-      <div class="cards">
-        <div class="card" style="background-color:#e1f5fe;"><h3>Certifications</h3><p><em>In progress / Uploading / Ongoing</em></p></div>
-        <div class="card" style="background-color:#fff8e1;"><h3>Approvals</h3><p><em>In progress / Uploading / Ongoing</em></p></div>
-      </div>
-    </section>
+  <!-- ABOUT -->
+  <section id="about">
+    <h2 class="section">About MetLab</h2>
+    <div class="card">
+      <p><strong>MetLab Testing and Analysis Services</strong> is a proudly Qatari-owned materials testing laboratory. We specialize in <span class="highlight">corrosion testing, mechanical testing, coating tests, and metallurgical analysis</span>.</p>
+      <p>Our operations align with the <span class="highlight">Qatar National Vision 2030</span>, contributing to industrial self-reliance, safety, and sustainability goals.</p>
+      <p>Driven by <span class="highlight">precision, integrity, and technical excellence</span>, MetLab is a trusted partner to oil & gas, petrochemical, marine, and manufacturing industries.</p>
+    </div>
+  </section>
 
-    <!-- CAREERS -->
-    <section id="careers">
-      <h2 class="section">Careers</h2>
+  <!-- CAPABILITIES -->
+  <section id="capabilities">
+    <h2 class="section">Testing Capabilities</h2>
+    <div class="cards">
+      <!-- Mechanical -->
       <div class="card">
-        <p>We’re building a small technical team. If you’re interested, submit your CV and a short message below.</p>
-        <form id="careersForm">
-          <input type="text" name="name" placeholder="Full name" required />
-          <input type="email" name="email" placeholder="Email" required />
-          <input type="text" name="position" placeholder="Position of interest" required />
-          <textarea name="cvtext" placeholder="Paste short CV or message"></textarea>
-          <button type="submit" class="cta">Submit Application</button>
-        </form>
-        <div id="careersResult"></div>
+        <h3>Mechanical Testing</h3>
+        <ul>
+          <li>Tensile Testing</li>
+          <li>Bend Testing (3-Point / 4-Point)</li>
+          <li>Charpy Impact Testing</li>
+          <li>Fracture Toughness (K_IC, J-Integral)</li>
+          <li>Hardness Tests (Rockwell, Vickers, Brinell)</li>
+          <li>Micro Hardness Testing</li>
+          <li>Fatigue & Cyclic Loading</li>
+          <li>Compression Test</li>
+          <li>Shear Test</li>
+          <li>Wear Resistance Test</li>
+        </ul>
       </div>
-    </section>
 
-    <!-- FEEDBACK -->
-    <section id="feedback">
-      <h2 class="section">Customer Feedback & Suggestions</h2>
+      <!-- Metallurgical -->
       <div class="card">
-        <form id="feedbackForm">
-          <input type="text" name="name" placeholder="Your name" required />
-          <input type="email" name="email" placeholder="Your email" required />
-          <select name="type" required>
-            <option value="">Select type</option>
-            <option value="feedback">Feedback</option>
-            <option value="enquiry">Enquiry</option>
-            <option value="suggestions">Suggestions</option>
-          </select>
-          <textarea name="message" placeholder="Your message or suggestion" required></textarea>
-          <button type="submit" class="cta">Send Feedback</button>
-        </form>
-        <div id="feedbackResult"></div>
+        <h3>Metallurgical Analysis</h3>
+        <ul>
+          <li>Microstructure Examination</li>
+          <li>Macro Examination</li>
+          <li>Grain Size Analysis</li>
+          <li>Prior Austenitic Grain Size (Carburizing & Oxidation Method)</li>
+          <li>Failure Analysis & Fractography</li>
+          <li>Inclusion & Defect Analysis</li>
+          <li>Phase Analysis</li>
+          <li>SEM & EDS Analysis</li>
+        </ul>
       </div>
-    </section>
 
-    <!-- CLIENT PORTAL -->
-    <section id="portal">
-      <h2 class="section">Client Report Portal (OTP-secured)</h2>
+      <!-- Corrosion -->
       <div class="card">
-        <p class="muted">Enter your report number. An OTP will be sent to the email registered with that report.</p>
-        <form id="portalForm">
-          <input type="text" id="reportNo" placeholder="Report number" required />
-          <button type="button" id="requestOtp" class="cta" style="background-color:#0b5cff; color:#fff;">Request OTP</button>
-        </form>
-        <p class="muted" style="margin-top:10px; font-size:14px;"><em>Feature under development; will be available soon.</em></p>
-        <div id="otpSection" style="margin-top:12px;display:none">
-          <input type="text" id="otpInput" placeholder="Enter OTP" />
-          <button id="verifyOtp" class="cta" style="background-color:#0b5cff; color:#fff;">Verify OTP</button>
-        </div>
-        <div id="portalResult" style="margin-top:12px"></div>
+        <h3>Corrosion Testing</h3>
+        <ul>
+          <li>Salt Spray / Fog Test </li>
+          <li>Electrochemical Testing (Potentiodynamic Polarization, EIS)</li>
+          <li>Stress Corrosion Cracking (SCC)</li>
+          <li>Pitting and Crevice Corrosion Tests</li>
+          <li>Intergranular Corrosion (IGC)</li>
+          <li>Hydrogen Induced Cracking (HIC)</li>
+          <li>Immersion / Chemical Exposure Tests</li>
+          <li>Accelerated Environmental Corrosion Simulation</li>
+          <li>Galvanic Corrosion Studies</li>
+        </ul>
       </div>
-    </section>
 
-  </main>
+      <!-- Coating -->
+      <div class="card">
+        <h3>Coating & Surface Testing</h3>
+        <ul>
+          <li>Coating Thickness Measurement</li>
+          <li>Adhesion & Pull-off Tests</li>
+          <li>Hardness & Abrasion Resistance Tests</li>
+          <li>Cross-Cut / Scratch Resistance Test</li>
+          <li>Surface Roughness & Profile Analysis</li>
+          <li>Flexibility Testing</li>
+          <li>Cathodic Disbondment</li>
+          <li>Differential Scanning Calorimetry (DSC)</li>
+          <li>Peel Testing</li>
+          <li>Hot Water Soak</li>
+          <li>Visual & Microscopic Coating Inspection</li>
+          <li>Salt Spray / Corrosion Testing of Coated Surfaces</li>
+          <li>Wear & Erosion Resistance Testing</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-  <script>
-    document.getElementById('feedbackForm').addEventListener('submit', function(e){
-      e.preventDefault();
-      document.getElementById('feedbackResult').innerHTML = '<div style="color:green;">Your feedback has been submitted to info.amsqatar@metlab.com. You will receive a response shortly.</div>';
-      this.reset();
-    });
-    document.getElementById('careersForm').addEventListener('submit', function(e){
-      e.preventDefault();
-      document.getElementById('careersResult').innerHTML = '<div style="color:green;">Application submitted. We will contact you shortly.</div>';
-      this.reset();
-    });
-  </script>
+  <!-- FEEDBACK -->
+  <section id="feedback">
+    <h2 class="section">Customer Feedback & Suggestions</h2>
+    <div class="card">
+      <form id="feedbackForm">
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="email" name="email" placeholder="Your email" required>
+        <select name="type" required>
+          <option value="">Select type</option>
+          <option value="feedback">Feedback</option>
+          <option value="enquiry">Enquiry</option>
+          <option value="suggestions">Suggestions</option>
+        </select>
+        <textarea name="message" placeholder="Your message or suggestion" required></textarea>
+        <button type="submit" class="cta">Send Feedback</button>
+      </form>
+      <div id="feedbackResult"></div>
+    </div>
+  </section>
+
+  <!-- CLIENT PORTAL -->
+  <section id="portal">
+    <h2 class="section">Client Report Portal (OTP-secured)</h2>
+    <div class="card">
+      <p class="muted">Enter your report number. An OTP will be sent to the email registered with that report. After verifying the OTP, the report will be available for download as a PDF.</p>
+      <form id="portalForm">
+        <input type="text" id="reportNo" placeholder="Report number" required>
+        <button type="button" id="requestOtp" class="cta" style="background-color:#0b5cff;color:#fff;">Request OTP</button>
+      </form>
+      <p class="muted" style="margin-top:10px;font-size:14px;"><em>Feature under development; will be available soon.</em></p>
+      <div id="otpSection" style="margin-top:12px;display:none">
+        <input type="text" id="otpInput" placeholder="Enter OTP">
+        <button id="verifyOtp" class="cta" style="background-color:#0b5cff;color:#fff;">Verify OTP</button>
+      </div>
+      <div id="portalResult" style="margin-top:12px"></div>
+    </div>
+  </section>
+</main>
+
+<script>
+// Feedback form submission
+document.getElementById('feedbackForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  document.getElementById('feedbackResult').innerHTML = "<strong>Your feedback has been submitted to MetLab. You will receive a response shortly.</strong>";
+  this.reset();
+});
+</script>
 
 </body>
 </html>
-
