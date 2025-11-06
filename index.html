@@ -6,128 +6,64 @@
   <title>MetLab Testing and Analysis Services</title>
   <meta name="description" content="Mechanical, Metallurgical, Corrosion & Coating Testings— MetLab" />
   <style>
-    /* === Variables === */
     :root {
       --accent: #0b5cff;
       --muted: #666;
       --card: #fff;
       --bg: #f4f6f8;
     }
-
     * { box-sizing: border-box; }
-    body { margin: 0; font-family: Inter, system-ui, Segoe UI, Roboto, Arial; line-height: 1.5; color: #222; background: var(--bg); }
+    body { margin:0; font-family: Inter,system-ui,Segoe UI,Roboto,Arial; line-height:1.5; color:#222; background:var(--bg); }
+    a { text-decoration:none; color:inherit; }
 
-    a { text-decoration: none; color: inherit; }
+    /* Sidebar */
+    .sidebar { position: fixed; left:0; top:0; width:240px; height:100vh; background-color:#1a1a1a; color:#fff; display:flex; flex-direction:column; align-items:flex-start; padding:20px; z-index:1000; }
+    .sidebar .brand { margin-bottom:20px; width:100%; text-align:center; }
+    .sidebar .brand .logo { width:180px; height:auto; display:block; margin:0 auto 10px; }
+    .sidebar .contact-info { font-size:14px; line-height:1.6; text-align:left; color:#ddd; width:100%; }
+    .sidebar .contact-info strong { color:var(--accent); }
 
-    /* === Sidebar === */
-    .sidebar {
-      position: fixed;
-      left: 0;
-      top: 0;
-      width: 240px;
-      height: 100vh;
-      background-color: #1a1a1a;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 20px;
-      z-index: 1000;
-    }
+    /* Top navigation */
+    header { position:fixed; left:240px; right:0; top:0; height:60px; background:#fff; display:flex; align-items:center; justify-content:flex-start; padding:0 30px; border-bottom:1px solid #e6e9ee; z-index:900; }
+    header .navlinks { display:flex; gap:20px; }
+    header .navlinks a { font-weight:600; color:var(--muted); padding:8px 12px; border-radius:6px; transition:0.3s; }
+    header .navlinks a:hover { background:#f0f0f0; }
+    header .navlinks .cta { background:var(--accent); color:#fff; }
 
-    .sidebar .brand {
-      margin-bottom: 20px;
-      width: 100%;
-      text-align: center;
-    }
+    /* Main content */
+    main { margin-left:240px; padding:100px 40px 40px 40px; }
+    html { scroll-padding-top:80px; }
 
-    .sidebar .brand .logo {
-      width: 180px;
-      height: auto;
-      display: block;
-      margin: 0 auto 10px auto;
-    }
+    /* Hero */
+    .hero { display:flex; gap:24px; align-items:flex-start; flex-wrap:wrap; margin-bottom:40px; }
+    .hero-left { flex:1; }
+    .hero h1 { font-size:32px; margin:0 0 12px; color:var(--accent); }
+    .hero p { margin:0 0 16px; color:var(--muted); font-size:16px; }
+    .cta { background:var(--accent); color:#fff; padding:10px 16px; border-radius:8px; font-weight:600; display:inline-block; }
 
-    .sidebar .contact-info {
-      font-size: 14px;
-      line-height: 1.6;
-      text-align: left;
-      color: #ddd;
-      width: 100%;
-    }
+    /* Cards */
+    .cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:16px; margin-top:18px; }
+    .card { background:var(--card); padding:14px; border-radius:10px; box-shadow:0 6px 18px rgba(15,25,40,.05); }
+    .card strong { color:var(--accent); }
 
-    .sidebar .contact-info strong { color: var(--accent); }
-
-    /* === Top Navigation === */
-    header {
-      position: fixed;
-      left: 240px;
-      right: 0;
-      top: 0;
-      height: 60px;
-      background-color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 0 30px;
-      border-bottom: 1px solid #e6e9ee;
-      z-index: 900;
-    }
-
-    header .navlinks { display: flex; gap: 20px; }
-    header .navlinks a {
-      font-weight: 600;
-      color: var(--muted);
-      padding: 8px 12px;
-      border-radius: 6px;
-      transition: background 0.3s;
-    }
-
-    header .navlinks a:hover { background-color: #f0f0f0; }
-    header .navlinks .cta { background-color: var(--accent); color: #fff; }
-
-    /* === Main Content === */
-    main {
-      margin-left: 240px;
-      padding: 100px 40px 40px 40px; /* leave space for top nav */
-    }
-
-    html { scroll-padding-top: 80px; } /* Scroll offset fix */
-
-    /* === Hero Section === */
-    .hero { display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; margin-bottom: 40px; }
-    .hero-left { flex: 1; }
-    .hero h1 { font-size: 32px; margin: 0 0 12px; color: var(--accent); }
-    .hero p { margin: 0 0 16px; color: var(--muted); font-size: 16px; }
-    .cta { background: var(--accent); color: #fff; padding: 10px 16px; border-radius: 8px; font-weight: 600; display: inline-block; }
-
-    /* === Cards === */
-    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 16px; margin-top: 18px; }
-    .card { background: var(--card); padding: 14px; border-radius: 10px; box-shadow: 0 6px 18px rgba(15,25,40,.05); }
-    .card strong { color: var(--accent); }
-
-    /* === Sections === */
-    h2.section { margin-top: 40px; font-size: 28px; color: var(--accent); border-bottom: 2px solid var(--accent); display: inline-block; padding-bottom: 4px; }
-
-    /* About section formatting */
-    #about .card p { line-height: 1.8; font-size: 16px; margin-bottom: 12px; }
-    #about .card p strong { color: var(--accent); font-weight: 700; }
-    #about .card p span.highlight { color: var(--accent); font-weight: 600; }
+    /* Sections */
+    h2.section { margin-top:40px; font-size:28px; color:var(--accent); border-bottom:2px solid var(--accent); display:inline-block; padding-bottom:4px; }
+    #about .card p { line-height:1.8; font-size:16px; margin-bottom:12px; }
+    #about .card p strong { color:var(--accent); font-weight:700; }
+    #about .card p span.highlight { color:var(--accent); font-weight:600; }
 
     /* Forms */
-    form { display: grid; gap: 10px; }
-    input, textarea, select, button { padding: 10px; border-radius: 8px; border: 1px solid #dde4ee; }
-    textarea { min-height: 120px; }
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    form { display:grid; gap:10px; }
+    input, textarea, select, button { padding:10px; border-radius:8px; border:1px solid #dde4ee; }
+    textarea { min-height:120px; }
+    .two-col { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
 
-    /* Client Portal Medium Contrast */
-    #portal .card { background-color: #f8f9fa; border: 1px solid #ddd; }
-    #portal .muted { color: #555; }
+    /* Portal */
+    #portal .card { background-color:#f8f9fa; border:1px solid #ddd; }
+    #portal .muted { color:#555; }
 
-    /* Footer */
-    footer { margin-top: 40px; padding: 28px 0; color: var(--muted); }
+    footer { margin-top:40px; padding:28px 0; color:var(--muted); }
 
-    /* Responsive */
     @media(max-width:720px){
       body{flex-direction:column;}
       .sidebar{position:relative;width:100%;height:auto;flex-direction:row;justify-content:space-between;padding:10px 20px;}
@@ -135,6 +71,7 @@
       header .navlinks{flex-wrap:wrap;justify-content:center;gap:10px;margin-top:8px;}
       main{margin-left:0;padding:20px;}
     }
+
   </style>
 </head>
 <body>
@@ -164,9 +101,7 @@
     </nav>
   </header>
 
-  <!-- Main Content -->
   <main>
-
     <!-- HERO -->
     <section class="hero" id="home">
       <div class="hero-left">
@@ -180,8 +115,9 @@
     <section id="about">
       <h2 class="section">About MetLab</h2>
       <div class="card">
-        <p><strong>MetLab Testing and Analysis Services</strong> is a proudly Qatari-owned materials testing laboratory. We specialize in <span class="highlight">corrosion testing, mechanical testing, coating tests, and metallurgical analysis</span>.</p>
-        <p>Our operations align with the <span class="highlight">Qatar National Vision 2030</span>, contributing to industrial self-reliance, safety, and sustainability goals.</p>
+        <p><strong>MetLab Testing and Analysis Services</strong> is a proudly Qatari-owned materials testing laboratory, established to meet the growing technical demands of the nation’s industrial sector. We specialize in <span class="highlight">corrosion testing, mechanical testing, coating tests, and metallurgical analysis</span> — providing accurate results that empower engineering and quality assurance teams across Qatar.</p>
+        <p>At MetLab, we are deeply committed to supporting Qatar’s national interests by offering high-quality services. Our operations align with the <span class="highlight">Qatar National Vision 2030</span>, contributing to industrial self-reliance, safety, and sustainability goals.</p>
+        <p>Driven by <span class="highlight">precision, integrity, and technical excellence</span>, MetLab strives to be a trusted partner to the oil & gas, petrochemical, marine, and manufacturing industries.</p>
       </div>
     </section>
 
@@ -191,8 +127,8 @@
       <div class="cards">
         <div class="card" style="background-color:#e3f2fd;"><h3>Mechanical Testing</h3><ul><li>Tensile Testing</li><li>Bend Testing</li><li>Charpy Impact</li><li>Fracture Toughness</li></ul></div>
         <div class="card" style="background-color:#fff3e0;"><h3>Metallurgical Analysis</h3><ul><li>Microstructure</li><li>Macro Examination</li><li>Grain Size Analysis</li></ul></div>
-        <div class="card" style="background-color:#e8f5e9; font-size:14px;"><h3>Corrosion Testing</h3><ul><li>Salt Spray Test</li><li>Electrochemical Testing</li><li>Intergranular Corrosion (IGC)</li><li>Hydrogen Induced Cracking (HIC)</li></ul></div>
-        <div class="card" style="background-color:#f3e5f5; font-size:14px;"><h3>Coating & Surface Testing</h3><ul><li>Coating Thickness Measurement</li><li>Adhesion & Pull-off Tests</li><li>Peel Testing</li><li>Wear & Erosion Testing</li></ul></div>
+        <div class="card" style="background-color:#e8f5e9; font-size:14px;"><h3>Corrosion Testing</h3><ul><li>Salt Spray / Fog Test</li><li>Electrochemical Testing</li><li>Stress Corrosion Cracking (SCC)</li><li>Pitting / Crevice Corrosion</li><li>Intergranular Corrosion (IGC)</li><li>Hydrogen Induced Cracking (HIC)</li></ul></div>
+        <div class="card" style="background-color:#f3e5f5; font-size:14px;"><h3>Coating Analysis</h3><ul><li>Coating Thickness Measurement</li><li>Adhesion & Pull-off Tests</li><li>Hardness & Abrasion Resistance</li><li>Peel Testing</li><li>Wear & Erosion Resistance</li></ul></div>
       </div>
     </section>
 
@@ -200,14 +136,8 @@
     <section id="certifications">
       <h2 class="section">Certifications & Approvals</h2>
       <div class="cards">
-        <div class="card" style="background-color:#e1f5fe;">
-          <h3>Certifications</h3>
-          <p><em>In progress / Uploading / Ongoing</em></p>
-        </div>
-        <div class="card" style="background-color:#fff8e1;">
-          <h3>Approvals</h3>
-          <p><em>In progress / Uploading / Ongoing</em></p>
-        </div>
+        <div class="card" style="background-color:#e1f5fe;"><h3>Certifications</h3><p><em>In progress / Uploading / Ongoing</em></p></div>
+        <div class="card" style="background-color:#fff8e1;"><h3>Approvals</h3><p><em>In progress / Uploading / Ongoing</em></p></div>
       </div>
     </section>
 
@@ -227,7 +157,7 @@
       </div>
     </section>
 
-    <!-- FEEDBACK FORM -->
+    <!-- FEEDBACK -->
     <section id="feedback">
       <h2 class="section">Customer Feedback & Suggestions</h2>
       <div class="card">
@@ -268,14 +198,11 @@
   </main>
 
   <script>
-    // Feedback Form submission
     document.getElementById('feedbackForm').addEventListener('submit', function(e){
       e.preventDefault();
       document.getElementById('feedbackResult').innerHTML = '<div style="color:green;">Your feedback has been submitted to info.amsqatar@metlab.com. You will receive a response shortly.</div>';
       this.reset();
     });
-
-    // Careers Form submission (demo)
     document.getElementById('careersForm').addEventListener('submit', function(e){
       e.preventDefault();
       document.getElementById('careersResult').innerHTML = '<div style="color:green;">Application submitted. We will contact you shortly.</div>';
@@ -285,3 +212,4 @@
 
 </body>
 </html>
+
