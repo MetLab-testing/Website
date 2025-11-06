@@ -12,72 +12,88 @@
   --card:#fff;
   --bg:#f4f6f8;
 }
-/* Global */
+
+/* === Global === */
 * {box-sizing:border-box;}
 body {margin:0;font-family:Inter, system-ui, Segoe UI, Roboto, Arial;line-height:1.5;color:#222;background:var(--bg);}
 a {text-decoration:none;color:inherit;}
 
-/* Sidebar */
-.sidebar{position:fixed;left:0;top:0;width:240px;height:100vh;background:#1a1a1a;color:#fff;display:flex;flex-direction:column;align-items:flex-start;padding:20px;z-index:1000;}
-.sidebar .brand{margin-bottom:20px;width:100%;text-align:center;}
-.sidebar .brand .logo{width:180px;height:auto;margin:0 auto 10px auto;display:block;}
-.sidebar .contact-info{font-size:14px;line-height:1.6;text-align:left;color:#ddd;width:100%;}
+/* === Sidebar === */
+.sidebar{
+  position:fixed; left:0; top:0; width:240px; height:100vh;
+  background:#1a1a1a; color:#fff; display:flex; flex-direction:column; align-items:flex-start;
+  padding:20px; z-index:1000;
+}
+.sidebar .brand{
+  margin-bottom:20px; width:100%; text-align:center;
+}
+.sidebar .brand .logo{
+  width:180px; height:auto; margin:0 auto 10px auto; display:block;
+}
+.sidebar .contact-info{
+  font-size:14px; line-height:1.6; text-align:left; color:#ddd; width:100%;
+}
 .sidebar .contact-info strong{color:var(--accent);}
 
-/* Header navigation */
-header{position:fixed;left:240px;right:0;top:0;height:60px;background:#fff;display:flex;align-items:center;justify-content:flex-start;padding:0 30px;border-bottom:1px solid #e6e9ee;z-index:900;}
+/* === Header Navigation === */
+header{
+  position:fixed; left:240px; right:0; top:0; height:60px; background:#fff;
+  display:flex; align-items:center; justify-content:flex-start; padding:0 30px; border-bottom:1px solid #e6e9ee; z-index:900;
+}
 header .navlinks{display:flex;gap:20px;}
-header .navlinks a{font-weight:600;color:var(--muted);padding:8px 12px;border-radius:6px;transition:background 0.3s;}
+header .navlinks a{
+  font-weight:600;color:var(--muted);padding:8px 12px;border-radius:6px;transition:background 0.3s;
+}
 header .navlinks a:hover{background:#f0f0f0;}
 header .navlinks .cta{background:var(--accent);color:#fff;}
 
-/* Main */
+/* === Main Content === */
 main{margin-left:240px;padding:100px 40px 40px 40px;}
-html{scroll-padding-top:80px;}
+html{scroll-padding-top:80px;} /* Fix anchor scroll */
 
-/* Hero */
+/* === Hero Section === */
 .hero{display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap;margin-bottom:40px;}
 .hero-left{flex:1;}
 .hero h1{font-size:32px;margin:0 0 12px;color:var(--accent);}
 .hero p{margin:0 0 16px;color:var(--muted);font-size:16px;}
 .cta{background:var(--accent);color:#fff;padding:10px 16px;border-radius:8px;font-weight:600;display:inline-block;}
 
-/* Cards */
+/* === Cards === */
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:18px;}
 .card{background:var(--card);padding:14px;border-radius:10px;box-shadow:0 6px 18px rgba(15,25,40,.05);}
 .card strong{color:var(--accent);}
 
-/* Section titles */
+/* === Section Titles === */
 h2.section{margin-top:40px;font-size:28px;color:var(--accent);border-bottom:2px solid var(--accent);display:inline-block;padding-bottom:4px;}
 
-/* About */
+/* === About Section === */
 #about .card p{line-height:1.8;font-size:16px;margin-bottom:12px;}
 #about .card p strong{color:var(--accent);font-weight:700;}
 #about .card p span.highlight{color:var(--accent);font-weight:600;}
 
-/* Forms */
+/* === Forms === */
 form{display:grid;gap:10px;}
 input,textarea,select,button{padding:10px;border-radius:8px;border:1px solid #dde4ee;}
 textarea{min-height:120px;}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 
-/* Feedback */
-#feedback .card{padding:18px;}
-
-/* Client Portal */
+/* === Client Portal === */
 #portal .card{background-color:#f8f9fa;border:1px solid #ddd;}
 #portal .muted{color:#555;}
 
-/* Footer */
+/* === Footer === */
 footer{margin-top:40px;padding:28px 0;color:var(--muted);}
 
-/* Capability card colors & font size */
+/* === Capability Cards Color-Coding & Font Adjustment === */
 #capabilities .card:nth-child(1){background-color:#e3f2fd;} /* Mechanical */
 #capabilities .card:nth-child(2){background-color:#fff3e0;} /* Metallurgical */
-#capabilities .card:nth-child(3){background-color:#e8f5e9;font-size:14px;} /* Corrosion */
-#capabilities .card:nth-child(4){background-color:#f3e5f5;font-size:14px;} /* Coating */
+#capabilities .card:nth-child(3){background-color:#e8f5e9;font-size:14px;} /* Corrosion: reduced font for long list */
+#capabilities .card:nth-child(4){background-color:#f3e5f5;font-size:14px;} /* Coating: reduced font */
 
-/* Responsive */
+/* === Certifications & Approvals Placeholder Styling === */
+#certifications .card{min-height:120px; display:flex; align-items:center; justify-content:center; font-size:16px; text-align:center; border:2px dashed #ccc; color:#777; background:#fff;}
+
+/* === Responsive === */
 @media(max-width:720px){
   body{flex-direction:column;}
   .sidebar{position:relative;width:100%;height:auto;flex-direction:row;justify-content:space-between;padding:10px 20px;}
@@ -100,12 +116,12 @@ footer{margin-top:40px;padding:28px 0;color:var(--muted);}
   </div>
 </aside>
 
-<!-- Header -->
+<!-- Top Navigation -->
 <header>
   <nav class="navlinks">
     <a href="#about">About</a>
     <a href="#capabilities">Capabilities</a>
-    <a href="#certifications">Certifications</a>
+    <a href="#certifications">Certifications & Approvals</a> <!-- New section -->
     <a href="#careers">Careers</a>
     <a href="#feedback">Feedback</a>
     <a href="#portal" class="cta">Client Portal</a>
@@ -119,11 +135,6 @@ footer{margin-top:40px;padding:28px 0;color:var(--muted);}
       <h1>Reliable Mechanical, Metallurgical, Corrosion & Coating Testing</h1>
       <p>Local laboratory support for <span class="highlight">Qatar’s oil & gas, marine, rail, and manufacturing sectors</span> — precision testing, fast turnaround, accredited processes.</p>
       <a class="cta" href="#capabilities">Explore Testing Capabilities</a>
-      <div class="cards">
-        <div class="card"><strong>Fast Turnaround</strong><div class="muted">Streamlined workflows for quicker results</div></div>
-        <div class="card"><strong>Accurate Reports</strong><div class="muted">Clear, detailed test reports suitable for certification</div></div>
-        <div class="card"><strong>Secure Client Portal</strong><div class="muted">Private access to your reports via OTP-based access</div></div>
-      </div>
     </div>
   </section>
 
@@ -142,7 +153,7 @@ footer{margin-top:40px;padding:28px 0;color:var(--muted);}
     <h2 class="section">Testing Capabilities</h2>
     <div class="cards">
       <!-- Mechanical -->
-      <div class="card">
+      <div class="card" style="background-color:#e3f2fd;">
         <h3>Mechanical Testing</h3>
         <ul>
           <li>Tensile Testing</li>
@@ -159,7 +170,7 @@ footer{margin-top:40px;padding:28px 0;color:var(--muted);}
       </div>
 
       <!-- Metallurgical -->
-      <div class="card">
+      <div class="card" style="background-color:#fff3e0;">
         <h3>Metallurgical Analysis</h3>
         <ul>
           <li>Microstructure Examination</li>
@@ -174,7 +185,7 @@ footer{margin-top:40px;padding:28px 0;color:var(--muted);}
       </div>
 
       <!-- Corrosion -->
-      <div class="card">
+      <div class="card" style="background-color:#e8f5e9;font-size:14px;">
         <h3>Corrosion Testing</h3>
         <ul>
           <li>Salt Spray / Fog Test </li>
@@ -190,7 +201,7 @@ footer{margin-top:40px;padding:28px 0;color:var(--muted);}
       </div>
 
       <!-- Coating -->
-      <div class="card">
+      <div class="card" style="background-color:#f3e5f5;font-size:14px;">
         <h3>Coating & Surface Testing</h3>
         <ul>
           <li>Coating Thickness Measurement</li>
@@ -204,10 +215,17 @@ footer{margin-top:40px;padding:28px 0;color:var(--muted);}
           <li>Peel Testing</li>
           <li>Hot Water Soak</li>
           <li>Visual & Microscopic Coating Inspection</li>
-          <li>Salt Spray / Corrosion Testing of Coated Surfaces</li>
-          <li>Wear & Erosion Resistance Testing</li>
         </ul>
       </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS & APPROVALS -->
+  <section id="certifications">
+    <h2 class="section">Certifications & Approvals</h2>
+    <div class="cards">
+      <div class="card">Certifications will be added soon.</div>
+      <div class="card">Client Approvals will be added soon.</div>
     </div>
   </section>
 
@@ -227,7 +245,6 @@ footer{margin-top:40px;padding:28px 0;color:var(--muted);}
         <textarea name="message" placeholder="Your message or suggestion" required></textarea>
         <button type="submit" class="cta">Send Feedback</button>
       </form>
-      <div id="feedbackResult"></div>
     </div>
   </section>
 
@@ -248,13 +265,22 @@ footer{margin-top:40px;padding:28px 0;color:var(--muted);}
       <div id="portalResult" style="margin-top:12px"></div>
     </div>
   </section>
-</main>
 
 <script>
-// Feedback form submission
+// Feedback form submission: open mailto link and show popup
 document.getElementById('feedbackForm').addEventListener('submit', function(e){
   e.preventDefault();
-  document.getElementById('feedbackResult').innerHTML = "<strong>Your feedback has been submitted to MetLab. You will receive a response shortly.</strong>";
+  const name = this.name.value;
+  const email = this.email.value;
+  const type = this.type.value;
+  const message = this.message.value;
+
+  const subject = encodeURIComponent(`Customer ${type} from MetLab: ${name}`);
+  const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nType: ${type}\nMessage:\n${message}`);
+
+  window.location.href = `mailto:info.amsqatar@gmail.com?subject=${subject}&body=${body}`;
+
+  alert("Email sent. You will receive a response shortly.");
   this.reset();
 });
 </script>
