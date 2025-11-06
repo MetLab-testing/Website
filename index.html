@@ -14,9 +14,8 @@
       --bg: #f4f6f8;
     }
 
-    /* === Global Styles === */
     * { box-sizing: border-box; }
-    body { margin: 0; font-family: Inter, system-ui, Segoe UI, Roboto, Arial; line-height: 1.5; color: #222; background: var(--bg); display: flex; }
+    body { margin: 0; font-family: Inter, system-ui, Segoe UI, Roboto, Arial; line-height: 1.5; color: #222; background: var(--bg); }
 
     a { text-decoration: none; color: inherit; }
 
@@ -37,49 +36,70 @@
     }
 
     .sidebar .brand {
-      margin-bottom: 40px;
+      margin-bottom: 30px;
     }
 
     .sidebar .brand .logo {
       width: 180px;
       height: auto;
       display: block;
-      margin: 0 auto;
+      margin: 0 auto 20px auto;
     }
 
-    .sidebar .navlinks {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      align-items: center;
-    }
-
-    .sidebar .navlinks a {
-      width: 100%;
+    .sidebar .contact-info {
+      font-size: 14px;
+      line-height: 1.6;
       text-align: center;
-      padding: 12px 0;
-      margin: 4px 0;
+      color: #ddd;
+      margin-top: 10px;
+    }
+
+    .sidebar .contact-info strong {
+      color: var(--accent);
+    }
+
+    /* === Top Navigation === */
+    header {
+      position: fixed;
+      left: 240px; /* sidebar width */
+      right: 0;
+      top: 0;
+      height: 60px;
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0 30px;
+      border-bottom: 1px solid #e6e9ee;
+      z-index: 900;
+    }
+
+    header .navlinks {
+      display: flex;
+      gap: 20px;
+    }
+
+    header .navlinks a {
       font-weight: 600;
-      color: #fff;
+      color: var(--muted);
+      padding: 8px 12px;
       border-radius: 6px;
       transition: background 0.3s;
     }
 
-    .sidebar .navlinks a:hover {
-      background-color: #333;
+    header .navlinks a:hover {
+      background-color: #f0f0f0;
     }
 
-    .sidebar .navlinks .cta {
+    header .navlinks .cta {
       background-color: var(--accent);
       color: #fff;
-      margin-top: 10px;
     }
 
     /* === Main Content === */
     main {
-      margin-left: 240px; /* same as sidebar width */
-      padding: 30px 40px;
-      flex: 1;
+      margin-left: 240px; /* same as sidebar */
+      padding: 100px 40px 40px 40px; /* leave space for top nav */
     }
 
     /* === Hero Section === */
@@ -96,18 +116,15 @@
 
     /* === Sections === */
     h2.section { margin-top: 40px; font-size: 28px; color: var(--accent); border-bottom: 2px solid var(--accent); display: inline-block; padding-bottom: 4px; }
-    
-    /* About section improvements */
+
+    /* About section formatting */
     #about .card p {
       line-height: 1.8;
       font-size: 16px;
+      margin-bottom: 12px;
     }
     #about .card p strong { color: var(--accent); font-weight: 700; }
-
-    #about .card p span.highlight {
-      color: var(--accent);
-      font-weight: 600;
-    }
+    #about .card p span.highlight { color: var(--accent); font-weight: 600; }
 
     /* Forms */
     form { display: grid; gap: 10px; }
@@ -120,35 +137,43 @@
 
     /* Responsive */
     @media(max-width: 720px) {
-      main { margin-left: 0; padding: 20px; }
-      .hero { flex-direction: column; }
-      .two-col { grid-template-columns: 1fr; }
+      body { flex-direction: column; }
       .sidebar { position: relative; width: 100%; height: auto; flex-direction: row; justify-content: space-between; padding: 10px 20px; }
-      .sidebar .navlinks { flex-direction: row; }
-      .sidebar .navlinks a { margin: 0 6px; }
+      header { left: 0; top: auto; width: 100%; height: auto; padding: 10px 20px; flex-wrap: wrap; justify-content: center; }
+      header .navlinks { flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 8px; }
+      main { margin-left: 0; padding: 20px; }
     }
-
   </style>
 </head>
 <body>
 
-  <!-- Sidebar / Fixed Left Header -->
+  <!-- Sidebar -->
   <aside class="sidebar">
     <div class="brand">
       <img src="logo.png" alt="MetLab Logo" class="logo">
     </div>
+    <div class="contact-info">
+      <p><strong>Contact Person:</strong> Operations Manager</p>
+      <p><strong>Phone No.:</strong> +974 44XXXXXX</p>
+      <p><strong>Mobile:</strong> +974 XXXXXXXX</p>
+      <p><strong>Email:</strong> Info.Qatar@xxxx.com</p>
+    </div>
+  </aside>
+
+  <!-- Top Navigation -->
+  <header>
     <nav class="navlinks">
       <a href="#about">About</a>
       <a href="#capabilities">Capabilities</a>
-      <a href="#contact">Contact</a>
       <a href="#careers">Careers</a>
-      <a href="#feedback">Feedback</a>
+      <a href="#feedback">Customer Feedback</a>
       <a href="#portal" class="cta">Client Portal</a>
     </nav>
-  </aside>
+  </header>
 
   <!-- Main Content -->
   <main>
+
     <!-- HERO -->
     <section class="hero" id="home">
       <div class="hero-left">
@@ -170,8 +195,7 @@
       <div class="card">
         <p><strong>MetLab Testing and Analysis Services</strong> is a proudly Qatari-owned materials testing laboratory, established to meet the growing technical demands of the nation’s industrial sector. We specialize in <span class="highlight">corrosion testing, mechanical testing, coating tests, and metallurgical analysis</span> — providing accurate results that empower engineering and quality assurance teams across Qatar.</p>
         <p>At MetLab, we are deeply committed to supporting Qatar’s national interests by offering high-quality services. Our operations align with the <span class="highlight">Qatar National Vision 2030</span>, contributing to the country’s industrial self-reliance, safety, and sustainability goals.</p>
-        <p>Driven by <span class="highlight">precision, integrity, and technical excellence</span>, MetLab strives to be a trusted partner to the oil & gas, petrochemical, marine, and manufacturing industries. We combine advanced testing equipment with a skilled technical team to deliver fast, accurate, and internationally recognized results.</p>
-        <p>Our purpose extends beyond testing — we aim to strengthen Qatar’s industrial foundation, support innovation, and uphold the highest standards of reliability and service excellence.</p>
+        <p>Driven by <span class="highlight">precision, integrity, and technical excellence</span>, MetLab strives to be a trusted partner to the oil & gas, petrochemical, marine, and manufacturing industries.</p>
       </div>
     </section>
 
@@ -207,10 +231,44 @@
       </div>
     </section>
 
-    <!-- Add other sections (contact, careers, feedback, portal) as before -->
+    <!-- CUSTOMER FEEDBACK FORM -->
+    <section id="feedback">
+      <h2 class="section">Customer Feedback & Test Requests</h2>
+      <div class="card">
+        <form id="feedbackForm">
+          <input type="text" name="name" placeholder="Your name" required />
+          <input type="email" name="email" placeholder="Your email" required />
+          <select name="type" required>
+            <option value="">Select type</option>
+            <option value="positive">Positive feedback</option>
+            <option value="negative">Negative feedback</option>
+            <option value="newtest">Request new test / inquiry</option>
+          </select>
+          <textarea name="message" placeholder="Your message or testing inquiry" required></textarea>
+          <button type="submit">Send Feedback</button>
+        </form>
+        <div id="feedbackResult"></div>
+      </div>
+    </section>
+
+    <!-- CLIENT PORTAL / REPORTS -->
+    <section id="portal">
+      <h2 class="section">Client Report Portal (OTP-secured)</h2>
+      <div class="card">
+        <p class="muted">Enter your report number. An OTP will be sent to the email registered with that report. After verifying the OTP, the report will be available for download as a PDF.</p>
+        <form id="portalForm">
+          <input type="text" id="reportNo" placeholder="Report number" required />
+          <button type="button" id="requestOtp">Request OTP</button>
+        </form>
+        <div id="otpSection" style="margin-top:12px;display:none">
+          <input type="text" id="otpInput" placeholder="Enter OTP" />
+          <button id="verifyOtp">Verify OTP</button>
+        </div>
+        <div id="portalResult" style="margin-top:12px"></div>
+      </div>
+    </section>
 
   </main>
 
 </body>
 </html>
-
