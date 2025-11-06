@@ -51,8 +51,18 @@ header .navlinks .cta{background:var(--accent);color:#fff;}
 main{margin-left:240px;padding:100px 40px 40px 40px;}
 html{scroll-padding-top:80px;} /* Fix anchor scroll */
 
-  <section class="hero" id="home"> <div class="hero-left"> <h1>Reliable Mechanical, Metallurgical & Corrosion Testing</h1> <p class="muted">Local laboratory support for Qatar’s oil & gas, marine, rail, and manufacturing sectors — precision testing, fast turnaround, accredited processes.</p> <a class="cta" href="#capabilities">Explore Testing Capabilities</a> <div class="cards"> <div class="card"><strong>Fast Turnaround</strong><div class="muted">Streamlined workflows for quicker results</div></div> <div class="card"><strong>Accurate Reports</strong><div class="muted">Clear, detailed test reports suitable for certification</div></div> <div class="card"><strong>Secure Client Portal</strong><div class="muted">Private access to your reports via OTP-based access</div></div> </div> </div> <div class="hero-right" style="width:360px"> <div style="background:#fff;padding:18px;border-radius:10px;box-shadow:0 10px 30px rgba(12,18,30,.06)"> <strong>Quick Contact</strong> <p class="muted">Send us a message and we'll get back within 24–48 hours.</p> <form id="contactForm"> <input type="text" name="name" placeholder="Your name" required /> <input type="email" name="email" placeholder="Your email" required /> <input type="text" name="subject" placeholder="Subject" /> <button type="submit">Send Message</button> </form> <div id="contactResult" style="margin-top:8px"></div> </div> </div> </section>
+  /* === Hero Section === */
+.hero{display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap;margin-bottom:40px;}
+.hero-left{flex:1;}
+.hero h1{font-size:32px;margin:0 0 12px;color:var(--accent);}
+.hero p{margin:0 0 16px;color:var(--muted);font-size:16px;}
+.cta{background:var(--accent);color:#fff;padding:10px 16px;border-radius:8px;font-weight:600;display:inline-block;}
 
+  
+/* === Cards === */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:18px;}
+.card{background:var(--card);padding:14px;border-radius:10px;box-shadow:0 6px 18px rgba(15,25,40,.05);}
+.card strong{color:var(--accent);}
 /* === Section Titles === */
 h2.section{margin-top:40px;font-size:28px;color:var(--accent);border-bottom:2px solid var(--accent);display:inline-block;padding-bottom:4px;}
 
