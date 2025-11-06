@@ -56,9 +56,7 @@
       width: 100%;
     }
 
-    .sidebar .contact-info strong {
-      color: var(--accent);
-    }
+    .sidebar .contact-info strong { color: var(--accent); }
 
     /* === Top Navigation === */
     header {
@@ -76,11 +74,7 @@
       z-index: 900;
     }
 
-    header .navlinks {
-      display: flex;
-      gap: 20px;
-    }
-
+    header .navlinks { display: flex; gap: 20px; }
     header .navlinks a {
       font-weight: 600;
       color: var(--muted);
@@ -89,14 +83,8 @@
       transition: background 0.3s;
     }
 
-    header .navlinks a:hover {
-      background-color: #f0f0f0;
-    }
-
-    header .navlinks .cta {
-      background-color: var(--accent);
-      color: #fff;
-    }
+    header .navlinks a:hover { background-color: #f0f0f0; }
+    header .navlinks .cta { background-color: var(--accent); color: #fff; }
 
     /* === Main Content === */
     main {
@@ -104,8 +92,7 @@
       padding: 100px 40px 40px 40px; /* leave space for top nav */
     }
 
-    /* Scroll offset fix for anchor links */
-    html { scroll-padding-top: 80px; }
+    html { scroll-padding-top: 80px; } /* Scroll offset fix */
 
     /* === Hero Section === */
     .hero { display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; margin-bottom: 40px; }
@@ -148,7 +135,6 @@
       header .navlinks{flex-wrap:wrap;justify-content:center;gap:10px;margin-top:8px;}
       main{margin-left:0;padding:20px;}
     }
-
   </style>
 </head>
 <body>
@@ -209,71 +195,81 @@
     <section id="capabilities">
       <h2 class="section">Testing Capabilities</h2>
       <div class="cards">
-        <div class="card">
+
+        <!-- Mechanical Testing -->
+        <div class="card" style="background-color:#e3f2fd;">
           <h3>Mechanical Testing</h3>
           <ul>
-            <li>Tensile testing</li>
-             <li>Bend Testing (3-Point / 4-Point)</li>
-            <li>Chapry Impact Testing</li>
-<li>Fracture Toughness (K_IC, J-Integral)</li>
-            <li><Hardness Tests (Rockwell, Vickers, Brinell)/li>
-            <li>Micro Hardness</li>
-               <li>Fatigue & Cyclic Loading</li>
-<li>Compression Test</li>
-              <li>Shear Test</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Metallurgical Analysis</h3>
-                <li>Microstructure</li>
- <li>Macro Eaamination</li>
-          <li>Grain Size Analysis</li>
-        <li>Prior Austenitic Grain Size(Carburizing and Oxidation Method)</li>
-         <li>Failure Analysis & Fractography</li>
-         <li>Inclusion & Defect Analysis</li>
-        <li>Phase Analysis </li>
-            <li>SEM & EDS </li>
-           
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Corrosion Testing</h3>
-          <ul>
-          <li>Salt Spray / Fog Test (ASTM B117)</li>
-        <li>Electrochemical Testing (Potentiodynamic Polarization, EIS)</li>
-        <li>Stress Corrosion Cracking (SCC)</li>
-        <li>Pitting and Crevice Corrosion Tests</li>
-        <li>Intergranular Corrosion (IGC)</li>
-        <li>Hydrogen Induced Cracking (HIC)</li>
-        <li>Immersion / Chemical Exposure Tests</li>
-        <li>Accelerated Environmental Corrosion Simulation</li>
-        <li>Galvanic Corrosion Studies</li>
+            <li>Tensile Testing</li>
+            <li>Bend Testing (3-Point / 4-Point)</li>
+            <li>Charpy Impact Testing</li>
+            <li>Fracture Toughness (K_IC, J-Integral)</li>
+            <li>Hardness Tests (Rockwell, Vickers, Brinell)</li>
+            <li>Micro Hardness Testing</li>
+            <li>Fatigue & Cyclic Loading</li>
+            <li>Compression Test</li>
+            <li>Shear Test</li>
+            <li>Wear Resistance Test</li>
           </ul>
         </div>
 
-        <div class="card">
-          <h3>Coating Analysis</h3>
+        <!-- Metallurgical Analysis -->
+        <div class="card" style="background-color:#fff3e0;">
+          <h3>Metallurgical Analysis</h3>
           <ul>
-        <li>Coating Thickness Measurement</li>
-        <li>Adhesion & Pull-off Tests</li>
-        <li>Hardness & Abrasion Resistance Tests</li>
-        <li>Cross-Cut / Scratch Resistance Test</li>
-        <li>Surface Roughness & Profile Analysis</li>
-            <li>Flexibilty Testing</li>
-            <li>Cathodic Disbondment</li>
-            <li>Differetial Scanning Calorimetry (DSC)</li>
-            <li>Peel testing</li>
-             <li>Hot Water Soak</li>
-            <li>Visual & Microscopic Coating Inspection</li>
-        <li>Salt Spray / Corrosion Testing of Coated Surfaces</li>
-        <li>Wear & Erosion Resistance Testing</li>
+            <li>Microstructure Examination</li>
+            <li>Macro Examination</li>
+            <li>Grain Size Analysis</li>
+            <li>Prior Austenitic Grain Size (Carburizing & Oxidation Method)</li>
+            <li>Failure Analysis & Fractography</li>
+            <li>Inclusion & Defect Analysis</li>
+            <li>Phase Analysis</li>
+            <li>SEM & EDS Analysis</li>
           </ul>
-        </div></div>
+        </div>
+
+        <!-- Corrosion Testing -->
+        <div class="card" style="background-color:#e8f5e9; font-size:14px;">
+          <h3>Corrosion Testing</h3>
+          <ul>
+            <li>Salt Spray / Fog Test (ASTM B117)</li>
+            <li>Electrochemical Testing (Potentiodynamic Polarization, EIS)</li>
+            <li>Stress Corrosion Cracking (SCC)</li>
+            <li>Pitting and Crevice Corrosion Tests</li>
+            <li>Intergranular Corrosion (IGC)</li>
+            <li>Hydrogen Induced Cracking (HIC)</li>
+            <li>Immersion / Chemical Exposure Tests</li>
+            <li>Accelerated Environmental Corrosion Simulation</li>
+            <li>Galvanic Corrosion Studies</li>
+          </ul>
+        </div>
+
+        <!-- Coating & Surface Testing -->
+        <div class="card" style="background-color:#f3e5f5; font-size:14px;">
+          <h3>Coating & Surface Testing</h3>
+          <ul>
+            <li>Coating Thickness Measurement</li>
+            <li>Adhesion & Pull-off Tests</li>
+            <li>Hardness & Abrasion Resistance Tests</li>
+            <li>Cross-Cut / Scratch Resistance Test</li>
+            <li>Surface Roughness & Profile Analysis</li>
+            <li>Flexibility Testing</li>
+            <li>Cathodic Disbondment</li>
+            <li>Differential Scanning Calorimetry (DSC)</li>
+            <li>Peel Testing</li>
+            <li>Hot Water Soak</li>
+            <li>Visual & Microscopic Coating Inspection</li>
+            <li>Salt Spray / Corrosion Testing of Coated Surfaces</li>
+            <li>Wear & Erosion Resistance Testing</li>
+          </ul>
+        </div>
+
+      </div>
     </section>
 
     <!-- FEEDBACK FORM -->
     <section id="feedback">
-      <h2 class="section">Customer Feedback & Test Requests</h2>
+      <h2 class="section">Customer Feedback & Suggestions</h2>
       <div class="card">
         <form id="feedbackForm">
           <input type="text" name="name" placeholder="Your name" required />
@@ -282,10 +278,10 @@
             <option value="">Select type</option>
             <option value="feedback">Feedback</option>
             <option value="enquiry">Enquiry</option>
-            <option value="newtest">Request a Test</option>
+            <option value="suggestions">Suggestions</option>
           </select>
-          <textarea name="message" placeholder="Your message or testing inquiry" required></textarea>
-          <button type="submit">Send Feedback</button>
+          <textarea name="message" placeholder="Your message or suggestion" required></textarea>
+          <button type="submit" class="cta">Send Feedback</button>
         </form>
         <div id="feedbackResult"></div>
       </div>
@@ -298,18 +294,19 @@
         <p class="muted">Enter your report number. An OTP will be sent to the email registered with that report. After verifying the OTP, the report will be available for download as a PDF.</p>
         <form id="portalForm">
           <input type="text" id="reportNo" placeholder="Report number" required />
-          <button type="button" id="requestOtp">Request OTP</button>
+          <button type="button" id="requestOtp" class="cta" style="background-color:#0b5cff; color:#fff;">Request OTP</button>
         </form>
+        <p class="muted" style="margin-top:10px; font-size:14px;"><em>Feature under development; will be available soon.</em></p>
         <div id="otpSection" style="margin-top:12px;display:none">
           <input type="text" id="otpInput" placeholder="Enter OTP" />
-          <button id="verifyOtp">Verify OTP</button>
+          <button id="verifyOtp" class="cta" style="background-color:#0b5cff; color:#fff;">Verify OTP</button>
         </div>
         <div id="portalResult" style="margin-top:12px"></div>
       </div>
     </section>
 
   </main>
-
 </body>
 </html>
+
 
