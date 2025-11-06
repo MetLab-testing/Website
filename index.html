@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>MetLab Testing and Analysis Services</title>
-  <meta name="description" content="Mechanical, Metallurgical & Corrosion Testing — MetLab" />
+  <meta name="description" content="Mechanical, Metallurgical, Corrosion & Coating Testings— MetLab" />
   <style>
     /* === Variables === */
     :root {
@@ -30,28 +30,30 @@
       color: #fff;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      padding: 20px 0;
+      align-items: flex-start;
+      padding: 20px;
       z-index: 1000;
     }
 
     .sidebar .brand {
-      margin-bottom: 30px;
+      margin-bottom: 20px;
+      width: 100%;
+      text-align: center;
     }
 
     .sidebar .brand .logo {
       width: 180px;
       height: auto;
       display: block;
-      margin: 0 auto 20px auto;
+      margin: 0 auto 10px auto;
     }
 
     .sidebar .contact-info {
       font-size: 14px;
       line-height: 1.6;
-      text-align: center;
+      text-align: left;
       color: #ddd;
-      margin-top: 10px;
+      width: 100%;
     }
 
     .sidebar .contact-info strong {
@@ -61,7 +63,7 @@
     /* === Top Navigation === */
     header {
       position: fixed;
-      left: 240px; /* sidebar width */
+      left: 240px;
       right: 0;
       top: 0;
       height: 60px;
@@ -98,9 +100,12 @@
 
     /* === Main Content === */
     main {
-      margin-left: 240px; /* same as sidebar */
+      margin-left: 240px;
       padding: 100px 40px 40px 40px; /* leave space for top nav */
     }
+
+    /* Scroll offset fix for anchor links */
+    html { scroll-padding-top: 80px; }
 
     /* === Hero Section === */
     .hero { display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; margin-bottom: 40px; }
@@ -110,7 +115,7 @@
     .cta { background: var(--accent); color: #fff; padding: 10px 16px; border-radius: 8px; font-weight: 600; display: inline-block; }
 
     /* === Cards === */
-    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 18px; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 16px; margin-top: 18px; }
     .card { background: var(--card); padding: 14px; border-radius: 10px; box-shadow: 0 6px 18px rgba(15,25,40,.05); }
     .card strong { color: var(--accent); }
 
@@ -118,11 +123,7 @@
     h2.section { margin-top: 40px; font-size: 28px; color: var(--accent); border-bottom: 2px solid var(--accent); display: inline-block; padding-bottom: 4px; }
 
     /* About section formatting */
-    #about .card p {
-      line-height: 1.8;
-      font-size: 16px;
-      margin-bottom: 12px;
-    }
+    #about .card p { line-height: 1.8; font-size: 16px; margin-bottom: 12px; }
     #about .card p strong { color: var(--accent); font-weight: 700; }
     #about .card p span.highlight { color: var(--accent); font-weight: 600; }
 
@@ -132,17 +133,22 @@
     textarea { min-height: 120px; }
     .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
+    /* Client Portal Medium Contrast */
+    #portal .card { background-color: #f8f9fa; border: 1px solid #ddd; }
+    #portal .muted { color: #555; }
+
     /* Footer */
     footer { margin-top: 40px; padding: 28px 0; color: var(--muted); }
 
     /* Responsive */
-    @media(max-width: 720px) {
-      body { flex-direction: column; }
-      .sidebar { position: relative; width: 100%; height: auto; flex-direction: row; justify-content: space-between; padding: 10px 20px; }
-      header { left: 0; top: auto; width: 100%; height: auto; padding: 10px 20px; flex-wrap: wrap; justify-content: center; }
-      header .navlinks { flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 8px; }
-      main { margin-left: 0; padding: 20px; }
+    @media(max-width:720px){
+      body{flex-direction:column;}
+      .sidebar{position:relative;width:100%;height:auto;flex-direction:row;justify-content:space-between;padding:10px 20px;}
+      header{left:0;top:auto;width:100%;height:auto;padding:10px 20px;flex-wrap:wrap;justify-content:center;}
+      header .navlinks{flex-wrap:wrap;justify-content:center;gap:10px;margin-top:8px;}
+      main{margin-left:0;padding:20px;}
     }
+
   </style>
 </head>
 <body>
@@ -166,7 +172,7 @@
       <a href="#about">About</a>
       <a href="#capabilities">Capabilities</a>
       <a href="#careers">Careers</a>
-      <a href="#feedback">Customer Feedback</a>
+      <a href="#feedback">Feedback</a>
       <a href="#portal" class="cta">Client Portal</a>
     </nav>
   </header>
@@ -177,7 +183,7 @@
     <!-- HERO -->
     <section class="hero" id="home">
       <div class="hero-left">
-        <h1>Reliable Mechanical, Metallurgical & Corrosion Testing</h1>
+        <h1>Reliable Mechanical, Metallurgical, Corrosion & Coating Testing</h1>
         <p>Local laboratory support for <span class="highlight">Qatar’s oil & gas, marine, rail, and manufacturing sectors</span> — precision testing, fast turnaround, accredited processes.</p>
         <a class="cta" href="#capabilities">Explore Testing Capabilities</a>
 
@@ -193,8 +199,8 @@
     <section id="about">
       <h2 class="section">About MetLab</h2>
       <div class="card">
-        <p><strong>MetLab Testing and Analysis Services</strong> is a proudly Qatari-owned materials testing laboratory, established to meet the growing technical demands of the nation’s industrial sector. We specialize in <span class="highlight">corrosion testing, mechanical testing, coating tests, and metallurgical analysis</span> — providing accurate results that empower engineering and quality assurance teams across Qatar.</p>
-        <p>At MetLab, we are deeply committed to supporting Qatar’s national interests by offering high-quality services. Our operations align with the <span class="highlight">Qatar National Vision 2030</span>, contributing to the country’s industrial self-reliance, safety, and sustainability goals.</p>
+        <p><strong>MetLab Testing and Analysis Services</strong> is a proudly Qatari-owned materials testing laboratory, established to meet the growing technical demands of the nation’s industrial sector. We specialize in <span class="highlight">corrosion testing, mechanical testing, coating tests, and metallurgical analysis</span>.</p>
+        <p>At MetLab, we are deeply committed to supporting Qatar’s national interests by offering high-quality services. Our operations align with the <span class="highlight">Qatar National Vision 2030</span>, contributing to industrial self-reliance, safety, and sustainability goals.</p>
         <p>Driven by <span class="highlight">precision, integrity, and technical excellence</span>, MetLab strives to be a trusted partner to the oil & gas, petrochemical, marine, and manufacturing industries.</p>
       </div>
     </section>
@@ -207,31 +213,65 @@
           <h3>Mechanical Testing</h3>
           <ul>
             <li>Tensile testing</li>
-            <li>Charpy impact</li>
-            <li>Hardness (Rockwell, Vickers, Brinell)</li>
-            <li>Fatigue & fracture mechanics (on request)</li>
+             <li>Bend Testing (3-Point / 4-Point)</li>
+            <li>Chapry Impact Testing</li>
+<li>Fracture Toughness (K_IC, J-Integral)</li>
+            <li><Hardness Tests (Rockwell, Vickers, Brinell)/li>
+            <li>Micro Hardness</li>
+               <li>Fatigue & Cyclic Loading</li>
+<li>Compression Test</li>
+              <li>Shear Test</li>
           </ul>
         </div>
         <div class="card">
           <h3>Metallurgical Analysis</h3>
-          <ul>
-            <li>Microstructure & optical microscopy</li>
-            <li>SEM & EDS (partnered / on request)</li>
-            <li>Failure analysis & fractography</li>
+                <li>Microstructure</li>
+ <li>Macro Eaamination</li>
+          <li>Grain Size Analysis</li>
+        <li>Prior Austenitic Grain Size(Carburizing and Oxidation Method)</li>
+         <li>Failure Analysis & Fractography</li>
+         <li>Inclusion & Defect Analysis</li>
+        <li>Phase Analysis </li>
+            <li>SEM & EDS </li>
+           
           </ul>
         </div>
         <div class="card">
           <h3>Corrosion Testing</h3>
           <ul>
-            <li>Salt spray (ASTM B117)</li>
-            <li>Electrochemical testing (potentiodynamic)</li>
-            <li>Stress corrosion & environment simulation</li>
+          <li>Salt Spray / Fog Test (ASTM B117)</li>
+        <li>Electrochemical Testing (Potentiodynamic Polarization, EIS)</li>
+        <li>Stress Corrosion Cracking (SCC)</li>
+        <li>Pitting and Crevice Corrosion Tests</li>
+        <li>Intergranular Corrosion (IGC)</li>
+        <li>Hydrogen Induced Cracking (HIC)</li>
+        <li>Immersion / Chemical Exposure Tests</li>
+        <li>Accelerated Environmental Corrosion Simulation</li>
+        <li>Galvanic Corrosion Studies</li>
           </ul>
         </div>
-      </div>
+
+        <div class="card">
+          <h3>Coating Analysis</h3>
+          <ul>
+        <li>Coating Thickness Measurement</li>
+        <li>Adhesion & Pull-off Tests</li>
+        <li>Hardness & Abrasion Resistance Tests</li>
+        <li>Cross-Cut / Scratch Resistance Test</li>
+        <li>Surface Roughness & Profile Analysis</li>
+            <li>Flexibilty Testing</li>
+            <li>Cathodic Disbondment</li>
+            <li>Differetial Scanning Calorimetry (DSC)</li>
+            <li>Peel testing</li>
+             <li>Hot Water Soak</li>
+            <li>Visual & Microscopic Coating Inspection</li>
+        <li>Salt Spray / Corrosion Testing of Coated Surfaces</li>
+        <li>Wear & Erosion Resistance Testing</li>
+          </ul>
+        </div></div>
     </section>
 
-    <!-- CUSTOMER FEEDBACK FORM -->
+    <!-- FEEDBACK FORM -->
     <section id="feedback">
       <h2 class="section">Customer Feedback & Test Requests</h2>
       <div class="card">
@@ -240,9 +280,9 @@
           <input type="email" name="email" placeholder="Your email" required />
           <select name="type" required>
             <option value="">Select type</option>
-            <option value="positive">Positive feedback</option>
-            <option value="negative">Negative feedback</option>
-            <option value="newtest">Request new test / inquiry</option>
+            <option value="feedback">Feedback</option>
+            <option value="enquiry">Enquiry</option>
+            <option value="newtest">Request a Test</option>
           </select>
           <textarea name="message" placeholder="Your message or testing inquiry" required></textarea>
           <button type="submit">Send Feedback</button>
@@ -251,7 +291,7 @@
       </div>
     </section>
 
-    <!-- CLIENT PORTAL / REPORTS -->
+    <!-- CLIENT PORTAL -->
     <section id="portal">
       <h2 class="section">Client Report Portal (OTP-secured)</h2>
       <div class="card">
@@ -272,3 +312,4 @@
 
 </body>
 </html>
+
