@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>MetLab Testing and Analysis Services</title>
-<meta name="description" content="Mechanical, Metallurgical, Corrosion & Coating Testings— MetLab">
+<meta name="description" content="Mechanical, Metallurgical, Corrosion & Coating Testing — MetLab Qatar">
 <style>
 :root {
   --accent:#0b5cff;
@@ -51,54 +51,47 @@ header .navlinks .cta{background:var(--accent);color:#fff;}
 main{margin-left:240px;padding:100px 40px 40px 40px;}
 html{scroll-padding-top:80px;} /* Fix anchor scroll */
 
-  /* === Hero Section === */
-.hero{display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap;margin-bottom:40px;}
-.hero-left{flex:1;}
+/* === Hero Section === */
+.hero{margin-bottom:40px;}
 .hero h1{font-size:32px;margin:0 0 12px;color:var(--accent);}
-.hero p{margin:0 0 16px;color:var(--muted);font-size:16px;}
-.cta{background:var(--accent);color:#fff;padding:10px 16px;border-radius:8px;font-weight:600;display:inline-block;}
+.hero p{margin:0 0 24px;color:var(--muted);font-size:16px;}
+.hero .cta{background:var(--accent);color:#fff;padding:10px 16px;border-radius:8px;font-weight:600;display:inline-block;}
+.hero-highlights{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:30px;}
+.hero-highlights .highlight-card{background:#fff;border-radius:12px;padding:16px;text-align:center;box-shadow:0 6px 18px rgba(0,0,0,0.05);}
+.hero-highlights .highlight-card h3{margin:8px 0;font-size:18px;color:var(--accent);}
+.hero-highlights .highlight-card p{margin:0;color:#555;font-size:14px;}
 
-  
+/* === Section Titles === */
+h2.section{margin-top:40px;font-size:28px;color:var(--accent);border-bottom:2px solid var(--accent);display:inline-block;padding-bottom:4px;}
+
 /* === Cards === */
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:18px;}
 .card{background:var(--card);padding:14px;border-radius:10px;box-shadow:0 6px 18px rgba(15,25,40,.05);}
 .card strong{color:var(--accent);}
-/* === Section Titles === */
-h2.section{margin-top:40px;font-size:28px;color:var(--accent);border-bottom:2px solid var(--accent);display:inline-block;padding-bottom:4px;}
 
-/* === About Section === */
-#about .card p{line-height:1.8;font-size:16px;margin-bottom:12px;}
-#about .card p strong{color:var(--accent);font-weight:700;}
-#about .card p span.highlight{color:var(--accent);font-weight:600;}
+/* === Capabilities Color Coding === */
+#capabilities .card:nth-child(1){background-color:#e3f2fd;}
+#capabilities .card:nth-child(2){background-color:#fff3e0;}
+#capabilities .card:nth-child(3){background-color:#e8f5e9;font-size:14px;}
+#capabilities .card:nth-child(4){background-color:#f3e5f5;font-size:14px;}
+
+/* === Certifications Placeholder === */
+#certifications .card{min-height:120px;display:flex;align-items:center;justify-content:center;
+  font-size:16px;text-align:center;border:2px dashed #ccc;color:#777;background:#fff;}
 
 /* === Forms === */
 form{display:grid;gap:10px;}
 input,textarea,select,button{padding:10px;border-radius:8px;border:1px solid #dde4ee;}
 textarea{min-height:120px;}
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 
 /* === Client Portal === */
 #portal .card{background-color:#f8f9fa;border:1px solid #ddd;}
 #portal .muted{color:#555;}
 
-/* === Footer === */
-footer{margin-top:40px;padding:28px 0;color:var(--muted);}
-
-/* === Capability Cards Color-Coding & Font Adjustment === */
-#capabilities .card:nth-child(1){background-color:#e3f2fd;} /* Mechanical */
-#capabilities .card:nth-child(2){background-color:#fff3e0;} /* Metallurgical */
-#capabilities .card:nth-child(3){background-color:#e8f5e9;font-size:14px;} /* Corrosion: reduced font for long list */
-#capabilities .card:nth-child(4){background-color:#f3e5f5;font-size:14px;} /* Coating: reduced font */
-
-/* === Certifications & Approvals Placeholder Styling === */
-#certifications .card{min-height:120px; display:flex; align-items:center; justify-content:center; font-size:16px; text-align:center; border:2px dashed #ccc; color:#777; background:#fff;}
-
 /* === Responsive === */
 @media(max-width:720px){
-  body{flex-direction:column;}
   .sidebar{position:relative;width:100%;height:auto;flex-direction:row;justify-content:space-between;padding:10px 20px;}
   header{left:0;top:auto;width:100%;height:auto;padding:10px 20px;flex-wrap:wrap;justify-content:center;}
-  header .navlinks{flex-wrap:wrap;justify-content:center;gap:10px;margin-top:8px;}
   main{margin-left:0;padding:20px;}
 }
 </style>
