@@ -325,5 +325,27 @@ document.getElementById('feedbackForm').addEventListener('submit', function(e) {
 });
 </script>
 
+  <script>
+// --- Mobile sidebar toggle ---
+const toggleBtn = document.getElementById('menuToggle');
+const sidebar = document.getElementById('sidebar');
+
+// create overlay (dark background)
+const overlay = document.createElement('div');
+overlay.classList.add('overlay');
+document.body.appendChild(overlay);
+
+toggleBtn.addEventListener('click', () => {
+  sidebar.classList.toggle('open');
+  overlay.classList.toggle('show');
+});
+
+// close sidebar if clicking outside
+overlay.addEventListener('click', () => {
+  sidebar.classList.remove('open');
+  overlay.classList.remove('show');
+});
+</script>
+
 </body>
 </html>
