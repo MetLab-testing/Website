@@ -59,22 +59,12 @@ a {text-decoration:none;color:inherit;}
 }
 .sidebar .contact-info strong{color:var(--accent);}
 
-/* Mobile slide behavior */
+/* Sidebar slide for mobile */
 .sidebar.open {
   transform:translateX(0);
 }
-@media(max-width:720px){
-  .sidebar{
-    transform:translateX(-100%);
-    position:fixed;
-    top:0; left:0;
-    height:100vh;
-    width:240px;
-    background:#1a1a1a;
-  }
-}
 
-/* Overlay for mobile menu */
+/* === Overlay === */
 .overlay{
   position:fixed;
   inset:0;
@@ -84,7 +74,7 @@ a {text-decoration:none;color:inherit;}
 }
 .overlay.show{display:block;}
 
-/* === Header Navigation === */
+/* === Header === */
 header{
   position:fixed;
   left:240px; right:0; top:0;
@@ -117,24 +107,15 @@ header .navlinks .cta{background:var(--accent);color:#fff;}
   cursor:pointer;
   margin-right:10px;
 }
-@media(max-width:720px){
-  .menu-toggle{display:block;color:#0b5cff;}
-}
 
 /* === Main Content === */
 main{
   margin-left:240px;
-  padding:100px 40px 40px 40px;
+  padding:100px 40px 40px 40px; /* starts below header */
   position:relative;
   z-index:1;
 }
 html{scroll-padding-top:80px;}
-@media(max-width:720px){
-  main{
-    margin-left:0;
-    padding:100px 20px 40px 20px;
-  }
-}
 
 /* === Hero Section === */
 .hero{
@@ -144,8 +125,8 @@ html{scroll-padding-top:80px;}
   border-radius:12px;
   box-shadow:0 6px 18px rgba(0,0,0,0.05);
 }
-.hero h1{font-size:28px;margin:0 0 12px;color:var(--accent);}
-.hero p{margin:0 0 24px;color:#444;font-size:15px;}
+.hero h1{font-size:32px;margin:0 0 12px;color:var(--accent);}
+.hero p{margin:0 0 24px;color:#444;font-size:16px;}
 .hero .cta{background:var(--accent);color:#fff;padding:10px 16px;border-radius:8px;font-weight:600;display:inline-block;}
 .hero-highlights{
   display:grid;
@@ -165,8 +146,8 @@ html{scroll-padding-top:80px;}
 
 /* === Section Titles === */
 h2.section{
-  margin-top:60px;
-  font-size:26px;
+  margin-top:40px;
+  font-size:28px;
   color:var(--accent);
   border-bottom:2px solid var(--accent);
   display:inline-block;
@@ -188,7 +169,7 @@ h2.section{
 }
 .card strong{color:var(--accent);}
 
-/* === Capabilities Colors === */
+/* === Capabilities Color Coding === */
 #capabilities .card:nth-child(1){background-color:#e3f2fd;}
 #capabilities .card:nth-child(2){background-color:#fff3e0;}
 #capabilities .card:nth-child(3){background-color:#e8f5e9;font-size:14px;}
@@ -216,6 +197,7 @@ input,textarea,select,button{
   font-size:15px;
 }
 textarea{min-height:120px;}
+button.cta{background:var(--accent);color:#fff;border:none;cursor:pointer;}
 
 /* === Client Portal === */
 #portal .card{
@@ -224,8 +206,21 @@ textarea{min-height:120px;}
 }
 #portal .muted{color:#555;}
 
-/* === Fix Overlapping in Mobile === */
+/* === MOBILE / RESPONSIVE === */
 @media(max-width:720px){
+  /* Sidebar slide */
+  .sidebar{
+    transform:translateX(-100%);
+    width:220px;
+    height:100vh;
+    position:fixed;
+    top:0;
+    left:0;
+  }
+  .sidebar.open{transform:translateX(0);}
+  .overlay.show{display:block;}
+
+  /* Header adjustments */
   header{
     left:0;
     right:0;
@@ -234,15 +229,24 @@ textarea{min-height:120px;}
     justify-content:space-between;
     padding:10px 20px;
   }
-  body{
-    padding-top:70px; /* Prevent hero from overlapping */
-  }
+  .menu-toggle{display:block;color:#0b5cff;}
+
+  /* Main content */
   main{
-    padding-top:10px;
+    margin-left:0;
+    padding:80px 20px 40px 20px;
   }
+
+  /* Ensure anchor links scroll below header */
+  section{
+    scroll-margin-top:80px;
+  }
+
+  /* Hero adjustments */
+  .hero h1{font-size:24px;}
+  .hero p{font-size:14px;}
+  h2.section{font-size:22px;}
 }
-
-
 </style>
 </head>
 
