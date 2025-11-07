@@ -94,12 +94,12 @@ textarea{min-height:120px;}
 #portal .muted{color:#555;}
 
 /* === Responsive === */
+/* Mobile top sections - only mobile */
+.mobile-top-sections {
+  display: none; /* hidden by default for desktop */
+}
+
 @media(max-width:720px){
-
-  /* Hide desktop sidebar and header nav */
-  .sidebar, header{display:none;}
-
-  /* Show mobile top sections */
   .mobile-top-sections {
     display:flex;
     flex-wrap:wrap;
@@ -111,6 +111,7 @@ textarea{min-height:120px;}
     left:0;
     right:0;
     z-index:900;
+  }
   }
   .mobile-top-sections a {
     padding:6px 10px;
