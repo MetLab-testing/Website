@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>MetLab Testing and Analysis Services</title>
 <meta name="description" content="Mechanical, Metallurgical, Corrosion & Coating Testing — MetLab Qatar">
 <style>
@@ -14,26 +14,26 @@
 }
 
 /* === Global === */
-*{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial;background:var(--bg);color:#222;line-height:1.6;}
-a{text-decoration:none;color:inherit;}
+* {box-sizing:border-box;margin:0;padding:0;}
+body {font-family:Inter,system-ui,Segoe UI,Roboto,Arial;background:var(--bg);color:#222;line-height:1.6;overflow-x:hidden;}
+a {text-decoration:none;color:inherit;}
 
 /* === Sidebar === */
 .sidebar{
   position:fixed;left:0;top:0;width:240px;height:100vh;
   background:#1a1a1a;color:#fff;display:flex;flex-direction:column;
-  padding:20px;z-index:1000;transition:transform 0.3s ease;
+  padding:20px;z-index:1001;transition:transform 0.3s ease;
 }
-.sidebar .brand{text-align:center;margin-bottom:20px;width:100%;}
+.sidebar .brand{text-align:center;margin-bottom:20px;}
 .sidebar .brand .logo{width:180px;height:auto;margin:0 auto 10px;display:block;}
 .sidebar .contact-info{font-size:14px;line-height:1.6;color:#ddd;}
 .sidebar .contact-info strong{color:var(--accent);}
 
-/* === Header Navigation === */
+/* === Header === */
 header{
   position:fixed;left:240px;right:0;top:0;height:60px;background:#fff;
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 20px;border-bottom:1px solid #e6e9ee;z-index:900;
+  padding:0 20px;border-bottom:1px solid #e6e9ee;z-index:1000;
 }
 header .navlinks{display:flex;gap:16px;flex-wrap:wrap;}
 header .navlinks a{
@@ -42,10 +42,12 @@ header .navlinks a{
 }
 header .navlinks a:hover{background:#f0f0f0;}
 header .navlinks .cta{background:var(--accent);color:#fff;}
+.menu-toggle{display:none;background:none;border:none;font-size:26px;color:var(--accent);cursor:pointer;}
 
-/* === Mobile Menu Button === */
-.menu-toggle{
-  display:none;background:none;border:none;font-size:24px;color:var(--accent);cursor:pointer;
+/* === Overlay === */
+.overlay{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  background:rgba(0,0,0,0.5);z-index:1000;display:none;
 }
 
 /* === Main === */
@@ -53,7 +55,7 @@ main{margin-left:240px;padding:100px 40px 40px;}
 html{scroll-padding-top:80px;}
 
 /* === Hero === */
-.hero{margin-bottom:40px;}
+.hero{margin-bottom:40px;position:relative;z-index:1;}
 .hero h1{font-size:32px;margin-bottom:12px;color:var(--accent);}
 .hero p{margin-bottom:24px;color:var(--muted);font-size:16px;}
 .hero .cta{background:var(--accent);color:#fff;padding:10px 16px;border-radius:8px;font-weight:600;display:inline-block;}
@@ -69,12 +71,6 @@ h2.section{margin-top:40px;font-size:28px;color:var(--accent);border-bottom:2px 
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:18px;}
 .card{background:var(--card);padding:14px;border-radius:10px;box-shadow:0 6px 18px rgba(15,25,40,.05);}
 .card strong{color:var(--accent);}
-
-/* === Capabilities Colors === */
-#capabilities .card:nth-child(1){background:#e3f2fd;}
-#capabilities .card:nth-child(2){background:#fff3e0;}
-#capabilities .card:nth-child(3){background:#e8f5e9;}
-#capabilities .card:nth-child(4){background:#f3e5f5;}
 
 /* === Certifications Placeholder === */
 #certifications .card{
@@ -101,10 +97,10 @@ button.cta{background:var(--accent);color:#fff;border:none;cursor:pointer;}
     position:fixed;top:0;left:0;
   }
   .sidebar.open{transform:translateX(0);}
-  header{left:0;padding-left:60px;}
-  main{margin-left:0;padding:100px 20px 40px;}
+  header{left:0;}
+  main{margin-left:0;padding:90px 20px 40px;}
+  .overlay.show{display:block;}
 }
-
 @media(max-width:600px){
   .hero h1{font-size:24px;}
   .hero p{font-size:14px;}
@@ -112,8 +108,8 @@ button.cta{background:var(--accent);color:#fff;border:none;cursor:pointer;}
 }
 </style>
 </head>
-<body>
 
+<body>
 <!-- Sidebar -->
 <aside id="sidebar" class="sidebar">
   <div class="brand"><img src="logo.png" alt="MetLab Logo" class="logo"></div>
@@ -139,111 +135,37 @@ button.cta{background:var(--accent);color:#fff;border:none;cursor:pointer;}
 </header>
 
 <main>
-
-  <!-- HERO -->
   <section class="hero" id="home">
     <h1>Reliable Mechanical, Metallurgical, Corrosion & Coating Testing</h1>
     <p>Local laboratory support for <strong>Qatar’s oil & gas, marine, rail, and manufacturing sectors</strong> — precision testing, fast turnaround, and accredited results.</p>
     <a class="cta" href="#capabilities">Explore Testing Capabilities</a>
     <div class="hero-highlights">
-      <div class="highlight-card">
-        <h3>Accurate Results</h3>
-        <p>Advanced equipment and standard methods ensure repeatable precision.</p>
-      </div>
-      <div class="highlight-card">
-        <h3>Client-Based OTP Access</h3>
-        <p>Secure, verified access to reports via client portal.</p>
-      </div>
-      <div class="highlight-card">
-        <h3>Fast Turnaround</h3>
-        <p>Rapid testing and reporting to meet urgent industrial timelines.</p>
-      </div>
-      <div class="highlight-card">
-        <h3>Accredited Standards</h3>
-        <p>Compliant with ASTM, ISO, and international specifications.</p>
-      </div>
+      <div class="highlight-card"><h3>Accurate Results</h3><p>Advanced equipment and standard methods ensure repeatable precision.</p></div>
+      <div class="highlight-card"><h3>Client-Based OTP Access</h3><p>Secure, verified access to reports via client portal.</p></div>
+      <div class="highlight-card"><h3>Fast Turnaround</h3><p>Rapid testing and reporting to meet urgent industrial timelines.</p></div>
+      <div class="highlight-card"><h3>Accredited Standards</h3><p>Compliant with ASTM, ISO, and international specifications.</p></div>
     </div>
   </section>
 
-  <!-- ABOUT -->
   <section id="about">
     <h2 class="section">About MetLab</h2>
     <div class="card">
-      <p><strong>MetLab Testing and Analysis Services</strong> is a proudly Qatari-owned materials testing laboratory. We specialize in <span class="highlight">Corrosion Analysis, Mechanical testing, coating Analysis, and Metallurgical Assesment</span>.</p>
+      <p><strong>MetLab Testing and Analysis Services</strong> is a proudly Qatari-owned materials testing laboratory. We specialize in <span class="highlight">Corrosion Analysis, Mechanical testing, Coating Analysis, and Metallurgical Assessment</span>.</p>
       <p>Our operations align with the <span class="highlight">Qatar National Vision 2030</span>, contributing to industrial self-reliance, safety, and sustainability goals.</p>
       <p>Driven by <span class="highlight">precision, integrity, and technical excellence</span>, MetLab is a trusted partner to oil & gas, petrochemical, marine, and manufacturing industries.</p>
     </div>
   </section>
 
-  <!-- CAPABILITIES -->
   <section id="capabilities">
     <h2 class="section">Testing Capabilities</h2>
     <div class="cards">
-      <div class="card">
-        <h3>Mechanical Testing</h3>
-        <ul>
-          <li>Tensile Testing</li>
-          <li>Bend Testing (3-Point / 4-Point)</li>
-          <li>Charpy Impact Testing</li>
-          <li>Fracture Toughness (K_IC, J-Integral)</li>
-          <li>Hardness Tests (Rockwell, Vickers, Brinell)</li>
-          <li>Micro Hardness Testing</li>
-          <li>Fatigue & Cyclic Loading</li>
-          <li>Compression Test</li>
-          <li>Shear Test</li>
-          <li>Through Thickness Tensile (Z-Tensile)</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>Metallurgical Analysis</h3>
-        <ul>
-          <li>Microstructure Examination</li>
-          <li>Macro Examination</li>
-          <li>Grain Size Analysis</li>
-          <li>Prior Austenitic Grain Size</li>
-          <li>Failure Analysis & Fractography</li>
-          <li>Inclusion & Defect Analysis</li>
-          <li>Phase Analysis</li>
-          <li>SEM & EDS Analysis</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>Corrosion Testing</h3>
-        <ul>
-          <li>Salt Spray / Fog Test </li>
-          <li>Electrochemical Testing</li>
-          <li>Stress Corrosion Cracking</li>
-          <li>Pitting and Crevice Corrosion Tests</li>
-          <li>Intergranular Corrosion (IGC)</li>
-          <li>Hydrogen Induced Cracking (HIC)</li>
-          <li>Immersion / Chemical Exposure Tests</li>
-          <li>Accelerated Environmental Corrosion Simulation</li>
-          <li>Galvanic Corrosion Studies</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>Coating Analysis</h3>
-        <ul>
-          <li>Coating Thickness Measurement</li>
-          <li>Adhesion & Pull-off Tests</li>
-          <li>Hardness & Abrasion Resistance Tests</li>
-          <li>Cross-Cut / Scratch Resistance Test</li>
-          <li>Surface Roughness & Profile Analysis</li>
-          <li>Flexibility Testing</li>
-          <li>Cathodic Disbondment</li>
-          <li>Differential Scanning Calorimetry (DSC)</li>
-          <li>Peel Testing</li>
-          <li>Hot Water Soak</li>
-          <li>Visual & Microscopic Coating Inspection</li>
-        </ul>
-      </div>
+      <div class="card" style="background-color:#e3f2fd;"><h3>Mechanical Testing</h3><ul><li>Tensile Testing</li><li>Bend Testing (3-Point / 4-Point)</li><li>Charpy Impact Testing</li><li>Fracture Toughness</li><li>Hardness Tests</li><li>Fatigue & Cyclic Loading</li></ul></div>
+      <div class="card" style="background-color:#fff3e0;"><h3>Metallurgical Analysis</h3><ul><li>Microstructure Examination</li><li>Failure Analysis & Fractography</li><li>SEM & EDS Analysis</li></ul></div>
+      <div class="card" style="background-color:#e8f5e9;"><h3>Corrosion Testing</h3><ul><li>Salt Spray / Fog Test</li><li>Electrochemical Testing</li><li>Stress Corrosion Cracking</li></ul></div>
+      <div class="card" style="background-color:#f3e5f5;"><h3>Coating Analysis</h3><ul><li>Coating Thickness Measurement</li><li>Adhesion & Pull-off Tests</li><li>Flexibility Testing</li></ul></div>
     </div>
   </section>
 
-  <!-- CERTIFICATIONS -->
   <section id="certifications">
     <h2 class="section">Certifications & Approvals</h2>
     <div class="cards">
@@ -252,7 +174,6 @@ button.cta{background:var(--accent);color:#fff;border:none;cursor:pointer;}
     </div>
   </section>
 
-  <!-- FEEDBACK -->
   <section id="feedback">
     <h2 class="section">Customer Feedback & Suggestions</h2>
     <div class="card">
@@ -271,66 +192,25 @@ button.cta{background:var(--accent);color:#fff;border:none;cursor:pointer;}
     </div>
   </section>
 
-  <!-- CLIENT PORTAL -->
   <section id="portal">
     <h2 class="section">Client Report Portal (OTP-secured)</h2>
     <div class="card">
-      <p class="muted">Enter your report number. An OTP will be sent to the email registered with that report. After verifying the OTP, the report will be available for download as a PDF.</p>
+      <p class="muted">Enter your report number. OTP will be sent to your registered email. After verifying, you can download your report as PDF.</p>
       <form id="portalForm">
         <input type="text" id="reportNo" placeholder="Report number" required>
         <button type="button" id="requestOtp" class="cta">Request OTP</button>
       </form>
       <p class="muted" style="margin-top:10px;font-size:14px;"><em>Feature under development; will be available soon.</em></p>
-      <div id="otpSection" style="margin-top:12px;display:none">
-        <input type="text" id="otpInput" placeholder="Enter OTP">
-        <button id="verifyOtp" class="cta">Verify OTP</button>
-      </div>
-      <div id="portalResult" style="margin-top:12px"></div>
     </div>
   </section>
+</main>
 
 <script>
-// --- Mobile menu toggle with overlay ---
-const toggleBtn = document.getElementById('menuToggle');
-const sidebar = document.getElementById('sidebar');
-
-// create overlay dynamically
-const overlay = document.createElement('div');
-overlay.classList.add('overlay');
-document.body.appendChild(overlay);
-
-toggleBtn.addEventListener('click', () => {
-  sidebar.classList.toggle('open');
-  overlay.classList.toggle('show');
-});
-
-// click outside closes sidebar
-overlay.addEventListener('click', () => {
-  sidebar.classList.remove('open');
-  overlay.classList.remove('show');
-});
-
-// --- Feedback form email ---
-document.getElementById('feedbackForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const name = this.name.value,
-        email = this.email.value,
-        type = this.type.value,
-        message = this.message.value;
-  const subject = encodeURIComponent(`Customer ${type} from MetLab: ${name}`);
-  const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nType: ${type}\nMessage:\n${message}`);
-  window.location.href = `mailto:info.amsqatar@gmail.com?subject=${subject}&body=${body}`;
-  alert("Email opened in your default mail app.");
-  this.reset();
-});
-</script>
-
-  <script>
 // --- Mobile sidebar toggle ---
 const toggleBtn = document.getElementById('menuToggle');
 const sidebar = document.getElementById('sidebar');
 
-// create overlay (dark background)
+// overlay creation
 const overlay = document.createElement('div');
 overlay.classList.add('overlay');
 document.body.appendChild(overlay);
@@ -339,13 +219,21 @@ toggleBtn.addEventListener('click', () => {
   sidebar.classList.toggle('open');
   overlay.classList.toggle('show');
 });
-
-// close sidebar if clicking outside
 overlay.addEventListener('click', () => {
   sidebar.classList.remove('open');
   overlay.classList.remove('show');
 });
-</script>
 
+// --- Feedback form ---
+document.getElementById('feedbackForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const name=this.name.value,email=this.email.value,type=this.type.value,message=this.message.value;
+  const subject=encodeURIComponent(`Customer ${type} from MetLab: ${name}`);
+  const body=encodeURIComponent(`Name: ${name}\nEmail: ${email}\nType: ${type}\nMessage:\n${message}`);
+  window.location.href=`mailto:info.amsqatar@gmail.com?subject=${subject}&body=${body}`;
+  alert("Email opened in your default mail app.");
+  this.reset();
+});
+</script>
 </body>
 </html>
