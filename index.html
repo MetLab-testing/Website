@@ -47,11 +47,6 @@ header .navlinks a{
 header .navlinks a:hover{background:#f0f0f0;}
 header .navlinks .cta{background:var(--accent);color:#fff;}
 
-/* === Mobile Top Sections === */
-.mobile-top-sections {
-  display:none;
-}
-
 /* === Main Content === */
 main{margin-left:240px;padding:100px 40px 40px 40px;}
 html{scroll-padding-top:80px;} /* Fix anchor scroll */
@@ -93,13 +88,18 @@ textarea{min-height:120px;}
 #portal .card{background-color:#f8f9fa;border:1px solid #ddd;}
 #portal .muted{color:#555;}
 
-/* === Responsive === */
-/* Mobile top sections - only mobile */
-.mobile-top-sections {
-  display: none; /* hidden by default for desktop */
-}
+/* === Mobile-specific elements hidden by default === */
+.mobile-top-sections,
+.mobile-sidebar,
+.mobile-menu-toggle { display: none; }
 
+/* === Responsive === */
 @media(max-width:720px){
+
+  /* Hide desktop sidebar and header on mobile */
+  .sidebar, header { display: none; }
+
+  /* Mobile top sections */
   .mobile-top-sections {
     display:flex;
     flex-wrap:wrap;
@@ -111,7 +111,6 @@ textarea{min-height:120px;}
     left:0;
     right:0;
     z-index:900;
-  }
   }
   .mobile-top-sections a {
     padding:6px 10px;
@@ -128,6 +127,7 @@ textarea{min-height:120px;}
 
   /* Mobile sidebar for logo + contact info */
   .mobile-sidebar {
+    display:block;
     position:fixed;
     top:0;
     left:-240px;
@@ -145,13 +145,11 @@ textarea{min-height:120px;}
     height:auto;
     margin-bottom:15px;
   }
-  .mobile-sidebar .contact-info {
-    font-size:14px;
-    line-height:1.6;
-  }
+  .mobile-sidebar .contact-info { font-size:14px; line-height:1.6; }
 
   /* Hamburger toggle button */
   .mobile-menu-toggle {
+    display:block;
     position:fixed;
     top:10px;
     right:15px;
@@ -163,7 +161,7 @@ textarea{min-height:120px;}
     color:#222;
   }
 
-  /* Push main content below top sections */
+  /* Push main content below mobile top sections */
   main {
     margin-left:0;
     padding-top:70px;
@@ -189,6 +187,18 @@ textarea{min-height:120px;}
     <p><strong>Email:</strong> Info.Qatar@xxxx.com</p>
   </div>
 </aside>
+
+<!-- Desktop Header Navigation -->
+<header>
+  <nav class="navlinks">
+    <a href="#about">About</a>
+    <a href="#capabilities">Capabilities</a>
+    <a href="#certifications">Certifications & Approvals</a>
+    <a href="#careers">Careers</a>
+    <a href="#feedback">Feedback</a>
+    <a href="#portal" class="cta">Client Portal</a>
+  </nav>
+</header>
 
 <!-- Mobile Top Sections -->
 <div class="mobile-top-sections">
@@ -298,7 +308,7 @@ textarea{min-height:120px;}
 </main>
 
 <script>
-// Feedback form
+// Feedback form submission
 document.getElementById('feedbackForm').addEventListener('submit', function(e){
   e.preventDefault();
   const name = this.name.value;
@@ -308,6 +318,7 @@ document.getElementById('feedbackForm').addEventListener('submit', function(e){
 
   const subject = encodeURIComponent(`Customer ${type} from MetLab: ${name}`);
   const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nType: ${type}\nMessage:\n${message}`);
+
   window.location.href = `mailto:info.amsqatar@gmail.com?subject=${subject}&body=${body}`;
   alert("Email sent. You will receive a response shortly.");
   this.reset();
@@ -330,5 +341,3 @@ document.addEventListener('click', (e) => {
 </script>
 </body>
 </html>
-
-
