@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>MetLab Testing and Analysis Services</title>
 <meta name="description" content="Mechanical, Metallurgical, Corrosion & Coating Testing — MetLab Qatar">
-
 <style>
 :root {
   --accent:#0b5cff;
@@ -16,168 +15,63 @@
 
 /* === Global === */
 * {box-sizing:border-box;}
-body {
-  margin:0;
-  font-family:Inter, system-ui, Segoe UI, Roboto, Arial;
-  line-height:1.5;
-  color:#222;
-  background:var(--bg);
-  overflow-x:hidden;
-}
+body {margin:0;font-family:Inter, system-ui, Segoe UI, Roboto, Arial;line-height:1.5;color:#222;background:var(--bg);}
 a {text-decoration:none;color:inherit;}
 
 /* === Sidebar === */
 .sidebar{
-  position:fixed;
-  left:0; top:0;
-  width:240px; height:100vh;
-  background:#1a1a1a;
-  color:#fff;
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-  padding:20px;
-  z-index:1000;
+  position:fixed; left:0; top:0; width:240px; height:100vh;
+  background:#1a1a1a; color:#fff; display:flex; flex-direction:column; align-items:flex-start;
+  padding:20px; z-index:1000;
 }
 .sidebar .brand{
-  margin-bottom:20px;
-  width:100%;
-  text-align:center;
+  margin-bottom:20px; width:100%; text-align:center;
 }
 .sidebar .brand .logo{
-  width:180px;
-  height:auto;
-  margin:0 auto 10px auto;
-  display:block;
+  width:180px; height:auto; margin:0 auto 10px auto; display:block;
 }
 .sidebar .contact-info{
-  font-size:14px;
-  line-height:1.6;
-  text-align:left;
-  color:#ddd;
-  width:100%;
+  font-size:14px; line-height:1.6; text-align:left; color:#ddd; width:100%;
 }
 .sidebar .contact-info strong{color:var(--accent);}
 
-/* === Desktop Header === */
-.desktop-header {
-  display: flex;
-  height: 60px;
-  align-items: center;
-  padding: 0 30px;
-  background: #fff;
-  position: fixed;
-  top: 0;
-  left: 240px;
-  right: 0;
-  z-index:950;
+/* === Header Navigation === */
+header{
+  position:fixed; left:240px; right:0; top:0; height:60px; background:#fff;
+  display:flex; align-items:center; justify-content:flex-start; padding:0 30px; border-bottom:1px solid #e6e9ee; z-index:900;
 }
-.desktop-header .navlinks{display:flex;gap:20px;flex-wrap:wrap;}
-.desktop-header .navlinks a{
-  font-weight:600;
-  color:var(--muted);
-  padding:8px 12px;
-  border-radius:6px;
-  transition:background 0.3s;
+header .navlinks{display:flex;gap:20px;}
+header .navlinks a{
+  font-weight:600;color:var(--muted);padding:8px 12px;border-radius:6px;transition:background 0.3s;
 }
-.desktop-header .navlinks a:hover{background:#f0f0f0;}
-.desktop-header .navlinks .cta{background:var(--accent);color:#fff;}
+header .navlinks a:hover{background:#f0f0f0;}
+header .navlinks .cta{background:var(--accent);color:#fff;}
 
-/* === Mobile Header === */
-.mobile-header {
-  display: none;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 20px;
-  height: 60px;
-  background: #fff;
-  position: fixed;
-  top:0;
-  left:0;
-  right:0;
-  z-index:1000;
-}
-.mobile-header .logo img {
-  height:40px; /* mobile logo size adjustable */
-  width:auto;
-}
-.menu-toggle {
-  font-size:28px; /* hamburger size adjustable */
-  background:none;
-  border:none;
-  cursor:pointer;
-}
-.mobile-navlinks {
+/* === Mobile Top Sections === */
+.mobile-top-sections {
   display:none;
-  flex-direction: column;
-  background:#fff;
-  position: fixed;
-  top:60px; /* starts below mobile header */
-  left:0;
-  right:0;
-  box-shadow:0 2px 10px rgba(0,0,0,0.2);
-  padding:10px 0;
 }
-.mobile-navlinks.show { display:flex; }
 
 /* === Main Content === */
-main{
-  margin-left:240px; /* desktop sidebar offset */
-  padding:100px 40px 40px 40px; /* content below desktop header */
-}
-html{scroll-padding-top:80px;}
+main{margin-left:240px;padding:100px 40px 40px 40px;}
+html{scroll-padding-top:80px;} /* Fix anchor scroll */
 
 /* === Hero Section === */
-.hero{
-  margin-top:0;
-  margin-bottom:40px;
-  background:#fff;
-  padding:30px;
-  border-radius:12px;
-  box-shadow:0 6px 18px rgba(0,0,0,0.05);
-}
+.hero{margin-bottom:40px;}
 .hero h1{font-size:32px;margin:0 0 12px;color:var(--accent);}
-.hero p{margin:0 0 24px;color:#444;font-size:16px;}
+.hero p{margin:0 0 24px;color:var(--muted);font-size:16px;}
 .hero .cta{background:var(--accent);color:#fff;padding:10px 16px;border-radius:8px;font-weight:600;display:inline-block;}
-.hero-highlights{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:16px;
-  margin-top:30px;
-}
-.hero-highlights .highlight-card{
-  background:#fff;
-  border-radius:12px;
-  padding:16px;
-  text-align:center;
-  box-shadow:0 6px 18px rgba(0,0,0,0.05);
-}
+.hero-highlights{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:30px;}
+.hero-highlights .highlight-card{background:#fff;border-radius:12px;padding:16px;text-align:center;box-shadow:0 6px 18px rgba(0,0,0,0.05);}
 .hero-highlights .highlight-card h3{margin:8px 0;font-size:18px;color:var(--accent);}
 .hero-highlights .highlight-card p{margin:0;color:#555;font-size:14px;}
 
 /* === Section Titles === */
-h2.section{
-  margin-top:40px;
-  font-size:28px;
-  color:var(--accent);
-  border-bottom:2px solid var(--accent);
-  display:inline-block;
-  padding-bottom:4px;
-}
+h2.section{margin-top:40px;font-size:28px;color:var(--accent);border-bottom:2px solid var(--accent);display:inline-block;padding-bottom:4px;}
 
 /* === Cards === */
-.cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:16px;
-  margin-top:18px;
-}
-.card{
-  background:var(--card);
-  padding:14px;
-  border-radius:10px;
-  box-shadow:0 6px 18px rgba(15,25,40,.05);
-}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:18px;}
+.card{background:var(--card);padding:14px;border-radius:10px;box-shadow:0 6px 18px rgba(15,25,40,.05);}
 .card strong{color:var(--accent);}
 
 /* === Capabilities Color Coding === */
@@ -187,63 +81,104 @@ h2.section{
 #capabilities .card:nth-child(4){background-color:#f3e5f5;font-size:14px;}
 
 /* === Certifications Placeholder === */
-#certifications .card{
-  min-height:120px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:16px;
-  text-align:center;
-  border:2px dashed #ccc;
-  color:#777;
-  background:#fff;
-}
+#certifications .card{min-height:120px;display:flex;align-items:center;justify-content:center;
+  font-size:16px;text-align:center;border:2px dashed #ccc;color:#777;background:#fff;}
 
 /* === Forms === */
 form{display:grid;gap:10px;}
-input,textarea,select,button{
-  padding:10px;
-  border-radius:8px;
-  border:1px solid #dde4ee;
-  font-size:15px;
-}
+input,textarea,select,button{padding:10px;border-radius:8px;border:1px solid #dde4ee;}
 textarea{min-height:120px;}
-button.cta{background:var(--accent);color:#fff;border:none;cursor:pointer;}
 
 /* === Client Portal === */
-#portal .card{
-  background-color:#f8f9fa;
-  border:1px solid #ddd;
-}
+#portal .card{background-color:#f8f9fa;border:1px solid #ddd;}
 #portal .muted{color:#555;}
 
-/* === MOBILE / RESPONSIVE === */
+/* === Responsive === */
 @media(max-width:720px){
-  /* Hide desktop sidebar */
-  .sidebar{display:none;}
-  main{
+
+  /* Hide desktop sidebar and header nav */
+  .sidebar, header{display:none;}
+
+  /* Show mobile top sections */
+  .mobile-top-sections {
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    padding:10px 15px;
+    background:#fff;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:900;
+  }
+  .mobile-top-sections a {
+    padding:6px 10px;
+    border-radius:6px;
+    background:#f4f4f4;
+    text-decoration:none;
+    color:#222;
+    font-weight:600;
+  }
+  .mobile-top-sections a.cta {
+    background:var(--accent);
+    color:#fff;
+  }
+
+  /* Mobile sidebar for logo + contact info */
+  .mobile-sidebar {
+    position:fixed;
+    top:0;
+    left:-240px;
+    width:240px;
+    height:100%;
+    background:#1a1a1a;
+    color:#fff;
+    padding:20px;
+    transition:left 0.3s;
+    z-index:1000;
+  }
+  .mobile-sidebar.show { left:0; }
+  .mobile-sidebar .logo img {
+    width:180px;
+    height:auto;
+    margin-bottom:15px;
+  }
+  .mobile-sidebar .contact-info {
+    font-size:14px;
+    line-height:1.6;
+  }
+
+  /* Hamburger toggle button */
+  .mobile-menu-toggle {
+    position:fixed;
+    top:10px;
+    right:15px;
+    z-index:1001;
+    font-size:28px;
+    background:none;
+    border:none;
+    cursor:pointer;
+    color:#222;
+  }
+
+  /* Push main content below top sections */
+  main {
     margin-left:0;
-    padding-top:70px; /* below mobile header */
-    padding-left:20px;
-    padding-right:20px;
+    padding-top:70px;
+    padding-left:15px;
+    padding-right:15px;
     padding-bottom:40px;
   }
-  section{scroll-margin-top:70px;} /* anchor offset for mobile header */
 
-  /* Show mobile header */
-  .desktop-header { display:none; }
-  .mobile-header { display:flex; }
+  section { scroll-margin-top:70px; }
 
-  /* Hero & section font adjustments */
-  .hero h1{font-size:24px;}
-  .hero p{font-size:14px;}
-  h2.section{font-size:22px;}
 }
 </style>
 </head>
 <body>
 
-<!-- Sidebar (Desktop only) -->
+<!-- Desktop Sidebar -->
 <aside class="sidebar">
   <div class="brand"><img src="logo.png" alt="MetLab Logo" class="logo"></div>
   <div class="contact-info">
@@ -254,43 +189,31 @@ button.cta{background:var(--accent);color:#fff;border:none;cursor:pointer;}
   </div>
 </aside>
 
-<!-- Desktop Header -->
-<header class="desktop-header">
-  <nav class="navlinks">
-    <a href="#about">About</a>
-    <a href="#capabilities">Capabilities</a>
-    <a href="#certifications">Certifications & Approvals</a>
-    <a href="#careers">Careers</a>
-    <a href="#feedback">Feedback</a>
-    <a href="#portal" class="cta">Client Portal</a>
-  </nav>
-</header>
+<!-- Mobile Top Sections -->
+<div class="mobile-top-sections">
+  <a href="#about">About</a>
+  <a href="#capabilities">Capabilities</a>
+  <a href="#certifications">Certifications</a>
+  <a href="#careers">Careers</a>
+  <a href="#feedback">Feedback</a>
+  <a href="#portal" class="cta">Client Portal</a>
+</div>
 
-<!-- Mobile Header -->
-<header class="mobile-header">
-  <div class="mobile-sidebar">
-    <div class="logo"><img src="logo.png" alt="MetLab Logo"></div>
-    <div class="contact-info">
-      <p><strong>Operations Manager</strong></p>
-      <p>Phone: +974 44XXXXXX</p>
-      <p>Mobile: +974 XXXXXXXX</p>
-      <p>Email: Info.Qatar@xxxx.com</p>
-    </div>
-    <nav class="mobile-navlinks">
-      <a href="#about">About</a>
-      <a href="#capabilities">Capabilities</a>
-      <a href="#certifications">Certifications</a>
-      <a href="#careers">Careers</a>
-      <a href="#feedback">Feedback</a>
-      <a href="#portal" class="cta">Client Portal</a>
-    </nav>
+<!-- Mobile Sidebar -->
+<aside class="mobile-sidebar">
+  <div class="logo"><img src="logo.png" alt="MetLab Logo"></div>
+  <div class="contact-info">
+    <p><strong>Operations Manager</strong></p>
+    <p>Phone: +974 44XXXXXX</p>
+    <p>Mobile: +974 XXXXXXXX</p>
+    <p>Email: Info.Qatar@xxxx.com</p>
   </div>
-</header>
+</aside>
 
-</header>
+<!-- Mobile Menu Toggle -->
+<button class="mobile-menu-toggle">&#9776;</button>
 
-</header>
-
+<!-- Main content -->
 <main>
   <!-- HERO -->
   <section class="hero" id="home">
@@ -298,22 +221,10 @@ button.cta{background:var(--accent);color:#fff;border:none;cursor:pointer;}
     <p>Local laboratory support for <strong>Qatar’s oil & gas, marine, rail, and manufacturing sectors</strong> — precision testing, fast turnaround, and accredited results.</p>
     <a class="cta" href="#capabilities">Explore Testing Capabilities</a>
     <div class="hero-highlights">
-      <div class="highlight-card">
-        <h3>Accurate Results</h3>
-        <p>Advanced equipment and standard methods ensure repeatable precision.</p>
-      </div>
-      <div class="highlight-card">
-        <h3>Client-Based OTP Access</h3>
-        <p>Secure, verified access to reports via client portal.</p>
-      </div>
-      <div class="highlight-card">
-        <h3>Fast Turnaround</h3>
-        <p>Rapid testing and reporting to meet urgent industrial timelines.</p>
-      </div>
-      <div class="highlight-card">
-        <h3>Accredited Standards</h3>
-        <p>Compliant with ASTM, ISO, and international specifications.</p>
-      </div>
+      <div class="highlight-card"><h3>Accurate Results</h3><p>Advanced equipment and standard methods ensure repeatable precision.</p></div>
+      <div class="highlight-card"><h3>Client-Based OTP Access</h3><p>Secure, verified access to reports via client portal.</p></div>
+      <div class="highlight-card"><h3>Fast Turnaround</h3><p>Rapid testing and reporting to meet urgent industrial timelines.</p></div>
+      <div class="highlight-card"><h3>Accredited Standards</h3><p>Compliant with ASTM, ISO, and international specifications.</p></div>
     </div>
   </section>
 
@@ -321,7 +232,7 @@ button.cta{background:var(--accent);color:#fff;border:none;cursor:pointer;}
   <section id="about">
     <h2 class="section">About MetLab</h2>
     <div class="card">
-      <p><strong>MetLab Testing and Analysis Services</strong> is a proudly Qatari-owned materials testing laboratory. We specialize in <span class="highlight">Corrosion Analysis, Mechanical testing, coating Analysis, and Metallurgical Assesment</span>.</p>
+      <p><strong>MetLab Testing and Analysis Services</strong> is a proudly Qatari-owned materials testing laboratory. We specialize in <span class="highlight">Corrosion Analysis, Mechanical testing, Coating Analysis, and Metallurgical Assessment</span>.</p>
       <p>Our operations align with the <span class="highlight">Qatar National Vision 2030</span>, contributing to industrial self-reliance, safety, and sustainability goals.</p>
       <p>Driven by <span class="highlight">precision, integrity, and technical excellence</span>, MetLab is a trusted partner to oil & gas, petrochemical, marine, and manufacturing industries.</p>
     </div>
@@ -331,68 +242,14 @@ button.cta{background:var(--accent);color:#fff;border:none;cursor:pointer;}
   <section id="capabilities">
     <h2 class="section">Testing Capabilities</h2>
     <div class="cards">
-      <div class="card" style="background-color:#e3f2fd;">
-        <h3>Mechanical Testing</h3>
-        <ul>
-          <li>Tensile Testing</li>
-          <li>Bend Testing (3-Point / 4-Point)</li>
-          <li>Charpy Impact Testing</li>
-          <li>Fracture Toughness (K_IC, J-Integral)</li>
-          <li>Hardness Tests (Rockwell, Vickers, Brinell)</li>
-          <li>Micro Hardness Testing</li>
-          <li>Fatigue & Cyclic Loading</li>
-          <li>Compression Test</li>
-          <li>Shear Test</li>
-          <li>Through Thickness Tensile (Z-Tensile)</li>
-        </ul>
-      </div>
-      <div class="card" style="background-color:#fff3e0;">
-        <h3>Metallurgical Analysis</h3>
-        <ul>
-          <li>Microstructure Examination</li>
-          <li>Macro Examination</li>
-          <li>Grain Size Analysis</li>
-          <li>Prior Austenitic Grain Size (Carburizing & Oxidation Method)</li>
-          <li>Failure Analysis & Fractography</li>
-          <li>Inclusion & Defect Analysis</li>
-          <li>Phase Analysis</li>
-          <li>SEM & EDS Analysis</li>
-        </ul>
-      </div>
-      <div class="card" style="background-color:#e8f5e9;">
-        <h3>Corrosion Testing</h3>
-        <ul>
-          <li>Salt Spray / Fog Test </li>
-          <li>Electrochemical Testing (Potentiodynamic Polarization, EIS)</li>
-          <li>Stress Corrosion Cracking (SCC)</li>
-          <li>Pitting and Crevice Corrosion Tests</li>
-          <li>Intergranular Corrosion (IGC)</li>
-          <li>Hydrogen Induced Cracking (HIC)</li>
-          <li>Immersion / Chemical Exposure Tests</li>
-          <li>Accelerated Environmental Corrosion Simulation</li>
-          <li>Galvanic Corrosion Studies</li>
-        </ul>
-      </div>
-      <div class="card" style="background-color:#f3e5f5;">
-        <h3>Coating Analysis</h3>
-        <ul>
-          <li>Coating Thickness Measurement</li>
-          <li>Adhesion & Pull-off Tests</li>
-          <li>Hardness & Abrasion Resistance Tests</li>
-          <li>Cross-Cut / Scratch Resistance Test</li>
-          <li>Surface Roughness & Profile Analysis</li>
-          <li>Flexibility Testing</li>
-          <li>Cathodic Disbondment</li>
-          <li>Differential Scanning Calorimetry (DSC)</li>
-          <li>Peel Testing</li>
-          <li>Hot Water Soak</li>
-          <li>Visual & Microscopic Coating Inspection</li>
-        </ul>
-      </div>
+      <div class="card" style="background-color:#e3f2fd;"><h3>Mechanical Testing</h3><ul><li>Tensile Testing</li><li>Bend Testing</li><li>Charpy Impact Testing</li></ul></div>
+      <div class="card" style="background-color:#fff3e0;"><h3>Metallurgical Analysis</h3><ul><li>Microstructure Examination</li><li>Macro Examination</li></ul></div>
+      <div class="card" style="background-color:#e8f5e9;font-size:14px;"><h3>Corrosion Testing</h3><ul><li>Salt Spray / Fog Test</li><li>Electrochemical Testing</li></ul></div>
+      <div class="card" style="background-color:#f3e5f5;font-size:14px;"><h3>Coating Analysis</h3><ul><li>Coating Thickness Measurement</li><li>Adhesion Tests</li></ul></div>
     </div>
   </section>
 
-  <!-- CERTIFICATIONS -->
+  <!-- CERTIFICATIONS & APPROVALS -->
   <section id="certifications">
     <h2 class="section">Certifications & Approvals</h2>
     <div class="cards">
@@ -424,14 +281,23 @@ button.cta{background:var(--accent);color:#fff;border:none;cursor:pointer;}
   <section id="portal">
     <h2 class="section">Client Report Portal (OTP-secured)</h2>
     <div class="card">
-      <p class="muted">Enter your report number. An OTP will be sent to the email registered with that report. Feature under development.</p>
+      <p class="muted">Enter your report number. An OTP will be sent to the email registered with that report. After verifying the OTP, the report will be available for download as a PDF.</p>
+      <form id="portalForm">
+        <input type="text" id="reportNo" placeholder="Report number" required>
+        <button type="button" id="requestOtp" class="cta" style="background-color:#0b5cff;color:#fff;">Request OTP</button>
+      </form>
+      <p class="muted" style="margin-top:10px;font-size:14px;"><em>Feature under development; will be available soon.</em></p>
+      <div id="otpSection" style="margin-top:12px;display:none">
+        <input type="text" id="otpInput" placeholder="Enter OTP">
+        <button id="verifyOtp" class="cta" style="background-color:#0b5cff;color:#fff;">Verify OTP</button>
+      </div>
+      <div id="portalResult" style="margin-top:12px"></div>
     </div>
   </section>
-
 </main>
 
 <script>
-// Feedback form submission
+// Feedback form
 document.getElementById('feedbackForm').addEventListener('submit', function(e){
   e.preventDefault();
   const name = this.name.value;
@@ -446,18 +312,22 @@ document.getElementById('feedbackForm').addEventListener('submit', function(e){
   this.reset();
 });
 
-// Mobile menu toggle
-const menuToggle = document.querySelector('.menu-toggle');
-const mobileNav = document.querySelector('.mobile-navlinks');
-menuToggle.addEventListener('click', () => {
-  mobileNav.classList.toggle('show');
+// Mobile sidebar toggle
+const sidebar = document.querySelector('.mobile-sidebar');
+const toggleBtn = document.querySelector('.mobile-menu-toggle');
+
+toggleBtn.addEventListener('click', () => {
+  sidebar.classList.toggle('show');
 });
+
+// Close sidebar if clicking outside
 document.addEventListener('click', (e) => {
-  if (!mobileNav.contains(e.target) && !menuToggle.contains(e.target)) {
-    mobileNav.classList.remove('show');
+  if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
+    sidebar.classList.remove('show');
   }
 });
 </script>
-
 </body>
 </html>
+
+
