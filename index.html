@@ -59,21 +59,6 @@ a {text-decoration:none;color:inherit;}
 }
 .sidebar .contact-info strong{color:var(--accent);}
 
-/* Sidebar slide for mobile */
-.sidebar.open {
-  transform:translateX(0);
-}
-
-/* Overlay */
-.overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.4);
-  z-index:900;
-  display:none;
-}
-.overlay.show{display:block;}
-
 /* === Desktop Header === */
 .desktop-header {
   display: flex;
@@ -101,9 +86,6 @@ a {text-decoration:none;color:inherit;}
 /* === Mobile Header === */
 .mobile-header {
   display: none;
-}
-.mobile-header {
-  display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
@@ -116,11 +98,11 @@ a {text-decoration:none;color:inherit;}
   z-index:1000;
 }
 .mobile-header .logo img {
-  height:40px; /* adjust logo size */
+  height:40px; /* mobile logo size adjustable */
   width:auto;
 }
 .menu-toggle {
-  font-size:28px; /* adjust hamburger size */
+  font-size:28px; /* hamburger size adjustable */
   background:none;
   border:none;
   cursor:pointer;
@@ -130,7 +112,7 @@ a {text-decoration:none;color:inherit;}
   flex-direction: column;
   background:#fff;
   position: fixed;
-  top:60px; /* below mobile header */
+  top:60px; /* starts below mobile header */
   left:0;
   right:0;
   box-shadow:0 2px 10px rgba(0,0,0,0.2);
@@ -140,13 +122,14 @@ a {text-decoration:none;color:inherit;}
 
 /* === Main Content === */
 main{
-  margin-left:240px;
-  padding:100px 40px 40px 40px; /* starts below desktop header */
+  margin-left:240px; /* desktop sidebar offset */
+  padding:100px 40px 40px 40px; /* content below desktop header */
 }
 html{scroll-padding-top:80px;}
 
 /* === Hero Section === */
 .hero{
+  margin-top:0;
   margin-bottom:40px;
   background:#fff;
   padding:30px;
@@ -236,11 +219,11 @@ button.cta{background:var(--accent);color:#fff;border:none;cursor:pointer;}
 
 /* === MOBILE / RESPONSIVE === */
 @media(max-width:720px){
-  /* Sidebar adjustments */
+  /* Hide desktop sidebar */
   .sidebar{display:none;}
   main{
     margin-left:0;
-    padding-top:70px; /* start below mobile header */
+    padding-top:70px; /* below mobile header */
     padding-left:20px;
     padding-right:20px;
     padding-bottom:40px;
@@ -337,15 +320,68 @@ button.cta{background:var(--accent);color:#fff;border:none;cursor:pointer;}
   <section id="capabilities">
     <h2 class="section">Testing Capabilities</h2>
     <div class="cards">
-      <!-- Your cards here (Mechanical, Metallurgical, Corrosion, Coating) -->
-      <div class="card" style="background-color:#e3f2fd;">Mechanical Testing list...</div>
-      <div class="card" style="background-color:#fff3e0;">Metallurgical Analysis list...</div>
-      <div class="card" style="background-color:#e8f5e9;">Corrosion Testing list...</div>
-      <div class="card" style="background-color:#f3e5f5;">Coating Analysis list...</div>
+      <div class="card" style="background-color:#e3f2fd;">
+        <h3>Mechanical Testing</h3>
+        <ul>
+          <li>Tensile Testing</li>
+          <li>Bend Testing (3-Point / 4-Point)</li>
+          <li>Charpy Impact Testing</li>
+          <li>Fracture Toughness (K_IC, J-Integral)</li>
+          <li>Hardness Tests (Rockwell, Vickers, Brinell)</li>
+          <li>Micro Hardness Testing</li>
+          <li>Fatigue & Cyclic Loading</li>
+          <li>Compression Test</li>
+          <li>Shear Test</li>
+          <li>Through Thickness Tensile (Z-Tensile)</li>
+        </ul>
+      </div>
+      <div class="card" style="background-color:#fff3e0;">
+        <h3>Metallurgical Analysis</h3>
+        <ul>
+          <li>Microstructure Examination</li>
+          <li>Macro Examination</li>
+          <li>Grain Size Analysis</li>
+          <li>Prior Austenitic Grain Size (Carburizing & Oxidation Method)</li>
+          <li>Failure Analysis & Fractography</li>
+          <li>Inclusion & Defect Analysis</li>
+          <li>Phase Analysis</li>
+          <li>SEM & EDS Analysis</li>
+        </ul>
+      </div>
+      <div class="card" style="background-color:#e8f5e9;">
+        <h3>Corrosion Testing</h3>
+        <ul>
+          <li>Salt Spray / Fog Test </li>
+          <li>Electrochemical Testing (Potentiodynamic Polarization, EIS)</li>
+          <li>Stress Corrosion Cracking (SCC)</li>
+          <li>Pitting and Crevice Corrosion Tests</li>
+          <li>Intergranular Corrosion (IGC)</li>
+          <li>Hydrogen Induced Cracking (HIC)</li>
+          <li>Immersion / Chemical Exposure Tests</li>
+          <li>Accelerated Environmental Corrosion Simulation</li>
+          <li>Galvanic Corrosion Studies</li>
+        </ul>
+      </div>
+      <div class="card" style="background-color:#f3e5f5;">
+        <h3>Coating Analysis</h3>
+        <ul>
+          <li>Coating Thickness Measurement</li>
+          <li>Adhesion & Pull-off Tests</li>
+          <li>Hardness & Abrasion Resistance Tests</li>
+          <li>Cross-Cut / Scratch Resistance Test</li>
+          <li>Surface Roughness & Profile Analysis</li>
+          <li>Flexibility Testing</li>
+          <li>Cathodic Disbondment</li>
+          <li>Differential Scanning Calorimetry (DSC)</li>
+          <li>Peel Testing</li>
+          <li>Hot Water Soak</li>
+          <li>Visual & Microscopic Coating Inspection</li>
+        </ul>
+      </div>
     </div>
   </section>
 
-  <!-- CERTIFICATIONS & APPROVALS -->
+  <!-- CERTIFICATIONS -->
   <section id="certifications">
     <h2 class="section">Certifications & Approvals</h2>
     <div class="cards">
@@ -377,7 +413,7 @@ button.cta{background:var(--accent);color:#fff;border:none;cursor:pointer;}
   <section id="portal">
     <h2 class="section">Client Report Portal (OTP-secured)</h2>
     <div class="card">
-      <p class="muted">Enter your report number. An OTP will be sent to the email registered with that report.</p>
+      <p class="muted">Enter your report number. An OTP will be sent to the email registered with that report. Feature under development.</p>
     </div>
   </section>
 
