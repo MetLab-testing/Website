@@ -14,10 +14,10 @@
 }
 
 /* === Global === */
-* {box-sizing:border-box;}
-body {margin:0;font-family:Inter, system-ui, Segoe UI, Roboto, Arial;line-height:1.5;color:#222;background:var(--bg);}
-a {text-decoration:none;color:inherit;}
-html{scroll-padding-top:80px;} /* Fix anchor scroll with fixed header */
+* { box-sizing:border-box; }
+body { margin:0; font-family:Inter, system-ui, Segoe UI, Roboto, Arial; line-height:1.5; color:#222; background:var(--bg); }
+a { text-decoration:none; color:inherit; }
+html { scroll-padding-top:80px; } /* Fix anchor scroll with fixed header */
 
 /* === Sidebar === */
 .sidebar{
@@ -25,244 +25,77 @@ html{scroll-padding-top:80px;} /* Fix anchor scroll with fixed header */
   background:#1a1a1a; color:#fff; display:flex; flex-direction:column; align-items:flex-start;
   padding:20px; z-index:1000;
 }
-.sidebar .brand{
-  margin-bottom:20px; width:100%; text-align:center;
-}
-.sidebar .brand .logo{
-  width:180px; height:auto; margin:0 auto 10px auto; display:block;
-}
-.sidebar .contact-info{
-  font-size:14px; line-height:1.6; text-align:left; color:#ddd; width:100%;
-}
-.sidebar .contact-info strong{color:var(--accent);}
+.sidebar .brand{ margin-bottom:20px; width:100%; text-align:center; }
+.sidebar .brand .logo{ width:180px; height:auto; margin:0 auto 10px auto; display:block; }
+.sidebar .contact-info{ font-size:14px; line-height:1.6; text-align:left; color:#ddd; width:100%; }
+.sidebar .contact-info strong{ color:var(--accent); }
 
 /* === Header Navigation === */
 header{
   position:fixed; left:240px; right:0; top:0; height:60px; background:#fff;
   display:flex; align-items:center; justify-content:flex-start; padding:0 30px; border-bottom:1px solid #e6e9ee; z-index:900;
 }
-header .navlinks{display:flex;gap:20px;}
+header .navlinks{ display:flex; gap:20px; }
 header .navlinks a{
-  font-weight:600;color:var(--muted);padding:8px 12px;border-radius:6px;transition:background 0.3s;
+  font-weight:600; color:var(--muted); padding:8px 12px; border-radius:6px; transition:background 0.3s;
 }
-header .navlinks a:hover{background:#f0f0f0;}
-header .navlinks .cta{background:var(--accent);color:#fff;}
+header .navlinks a:hover{ background:#f0f0f0; }
+header .navlinks .cta{ background:var(--accent); color:#fff; }
 
 /* === Main Content === */
-main{margin-left:240px;padding:100px 40px 40px 40px;}
+main{ margin-left:240px; padding:100px 40px 40px 40px; }
 
 /* === Hero / Home Section === */
-.hero{margin-bottom:40px;}
-.hero h1{font-size:32px;margin:0 0 12px;color:var(--accent);}
-.hero p{margin:0 0 24px;color:var(--muted);font-size:16px;}
-.hero .cta{background:var(--accent);color:#fff;padding:10px 16px;border-radius:8px;font-weight:600;display:inline-block;}
-.hero-highlights{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:30px;}
-.hero-highlights .highlight-card{background:#fff;border-radius:12px;padding:16px;text-align:center;box-shadow:0 6px 18px rgba(0,0,0,0.05);}
-.hero-highlights .highlight-card h3{margin:8px 0;font-size:18px;color:var(--accent);}
-.hero-highlights .highlight-card p{margin:0;color:#555;font-size:14px;}
+.hero{ margin-bottom:40px; }
+.hero h1{ font-size:32px; margin:10px 0 12px; color:var(--accent); } /* smaller top margin */
+.hero p{ margin:0 0 24px; color:var(--muted); font-size:16px; }
+.hero .cta{ background:var(--accent); color:#fff; padding:10px 16px; border-radius:8px; font-weight:600; display:inline-block; }
+.hero-highlights{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-top:30px; }
+.hero-highlights .highlight-card{ background:#fff; border-radius:12px; padding:16px; text-align:center; box-shadow:0 6px 18px rgba(0,0,0,0.05); }
+.hero-highlights .highlight-card h3{ margin:8px 0; font-size:18px; color:var(--accent); }
+.hero-highlights .highlight-card p{ margin:0; color:#555; font-size:14px; }
 
-/* === Home Carousel === */
+/* === Home Carousel (clean, no-crop) === */
 .home-carousel {
   position: relative;
   width: 100%;
   max-width: 920px;
-  margin: 24px auto 0;
+  margin: -20px auto 16px; /* pull up slightly, small gap below */
   border-radius: 12px;
   overflow: hidden;
   background: #fff;
   border: 1px solid #e6e9ee;
   box-shadow: 0 8px 24px rgba(0,0,0,0.06);
 }
+.home-carousel .viewport {
+  background-color: #ffffff; /* clean frame behind letterboxing */
+}
 .home-carousel .viewport img {
-  max-height: 70vh;
+  display: block;
   width: 100%;
   height: auto;
-  object-fit: contain; /* ✅ full image visible */
-  background-color: #ffffff; /* ✅ clean frame */
+  max-height: 70vh;         /* never taller than 70% of viewport */
+  object-fit: contain;      /* <-- key: show full image, no cropping */
+  background-color: #ffffff;
 }
-
-  /* Reduce space above and below carousel */
-.home-carousel {
-  margin-top: -20px;  /* ✅ moves images slightly upward */
-  margin-bottom: 10px; /* ✅ reduces gap below images */
-}
-
-  .hero h1 {
-  margin-top: 10px; /* reduce giant gap */
-}
-  .home-carousel .viewport {
-  background-color: #ffffff; /* optional: matches image bg */
-}
-  .home-carousel .ctrl {
+.home-carousel .ctrl {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   border: 0;
-  background: #ffffffcc;
+  background: rgba(255,255,255,0.6);
   padding: 10px 14px;
   border-radius: 999px;
   cursor: pointer;
   font-size: 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
-.home-carousel .ctrl:hover { background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.15); }
+.home-carousel .ctrl:hover { background: rgba(255,255,255,0.9); }
 .home-carousel .prev { left: 10px; }
 .home-carousel .next { right: 10px; }
 
 .home-carousel .indicators {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 6px;
-  background: #ffffffcc;
-  padding: 6px 10px;
-  border-radius: 999px;
-}
-.home-carousel .dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: #bbb; border: 0; cursor: pointer;
-}
-.home-carousel .dot.active { background: var(--accent); }
-
-  @media (min-width: 1400px) {
-  .home-carousel .viewport img {
-    max-height: 80vh;
-  }
-}
-
-
-/* === Section Titles === */
-h2.section{margin-top:40px;font-size:28px;color:var(--accent);border-bottom:2px solid var(--accent);display:inline-block;padding-bottom:4px;}
-
-/* === Cards === */
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:18px;}
-.card{background:var(--card);padding:14px;border-radius:10px;box-shadow:0 6px 18px rgba(15,25,40,.05);}
-.card strong{color:var(--accent);}
-
-/* === Capabilities Color Coding === */
-#capabilities .card:nth-child(1){background-color:#e3f2fd;}
-#capabilities .card:nth-child(2){background-color:#fff3e0;}
-#capabilities .card:nth-child(3){background-color:#e8f5e9;font-size:14px;}
-#capabilities .card:nth-child(4){background-color:#f3e5f5;font-size:14px;}
-
-/* === Certifications Placeholder === */
-#certifications .card{min-height:120px;display:flex;align-items:center;justify-content:center;
-  font-size:16px;text-align:center;border:2px dashed #ccc;color:#777;background:#fff;}
-
-/* === Forms === */
-form{display:grid;gap:10px;}
-input,textarea,select,button{padding:10px;border-radius:8px;border:1px solid #dde4ee;}
-textarea{min-height:120px;}
-
-/* === Client Portal === */
-#portal .card{background-color:#f8f9fa;border:1px solid #ddd;}
-#portal .muted{color:#555;}
-
-/* === Mobile-specific elements hidden by default === */
-.mobile-top-sections,
-.mobile-sidebar,
-.mobile-menu-toggle { display: none; }
-
-/* === Responsive === */
-@media(max-width:720px){
-
-  /* Hide desktop sidebar and header on mobile */
-  .sidebar, header { display: none; }
-
-  /* Mobile top sections */
-  .mobile-top-sections {
-    display:flex;
-    flex-wrap:wrap;
-    gap:6px;
-    padding:10px 15px;
-    background:#fff;
-    position:fixed;
-    top:0;
-    left:0;
-    right:0;
-    z-index:900;
-  }
-  .mobile-top-sections a {
-    padding:6px 10px;
-    border-radius:6px;
-    background:#f4f4f4;
-    text-decoration:none;
-    color:#222;
-    font-weight:600;
-  }
-  .mobile-top-sections a.cta {
-    background:var(--accent);
-    color:#fff;
-  }
-
-  /* Mobile sidebar for logo + contact info */
-  .mobile-sidebar {
-    display:block;
-    position:fixed;
-    top:0;
-    left:-240px;
-    width:240px;
-    height:100%;
-    background:#1a1a1a;
-    color:#fff;
-    padding:20px;
-    transition:left 0.3s;
-    z-index:1000;
-  }
-  .mobile-sidebar.show { left:0; }
-  .mobile-sidebar .logo img {
-    width:180px;
-    height:auto;
-    margin-bottom:15px;
-  }
-  .mobile-sidebar .contact-info { font-size:14px; line-height:1.6; }
-
-  /* Hamburger toggle button */
-  .mobile-menu-toggle {
-    display:block;
-    position:fixed;
-    top:10px;
-    right:15px;
-    z-index:1001;
-    font-size:28px;
-    background:none;
-    border:none;
-    cursor:pointer;
-    color:#222;
-  }
-
-  /* Push main content below mobile top sections */
-  main {
-    margin-left:0;
-    padding-top:100px;
-    padding-left:15px;
-    padding-right:15px;
-    padding-bottom:40px;
-  }
-
-  section { scroll-margin-top:70px; }
-}
-/* Controls lighter so they don't dominate */
-.home-carousel .ctrl {
-  background: rgba(255,255,255,0.6);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-.home-carousel .ctrl:hover {
-  background: rgba(255,255,255,0.9);
-}
-
-/* Keep image tall enough but never awkwardly long */
-.home-carousel .viewport img {
-  max-height: 70vh;        /* never taller than 70% of viewport */
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
-/* Move indicators BELOW image and make them very subtle */
-.home-carousel .indicators {
-  position: static;         /* no absolute positioning => no overlap */
+  position: static;         /* dots below image, no overlap */
   transform: none;
   background: transparent;
   padding: 8px 0 0;
@@ -279,12 +112,7 @@ textarea{min-height:120px;}
   border: 0;
   cursor: pointer;
 }
-.home-carousel .dot.active {
-  background: var(--accent);
-  opacity: 0.9;
-}
-
-/* Tiny, unobtrusive caption like “Image 1 of 9” */
+.home-carousel .dot.active { background: var(--accent); opacity: 0.9; }
 .home-carousel .caption {
   text-align: center;
   font-size: 12px;
@@ -292,10 +120,72 @@ textarea{min-height:120px;}
   margin-top: 4px;
 }
 
-/* Add a little space under the carousel so text doesn't feel crowded */
-.home-carousel { margin-bottom: 16px; }
+/* Optional: allow a bit taller on very wide screens */
+@media (min-width: 1400px) {
+  .home-carousel .viewport img { max-height: 80vh; }
+}
 
+/* === Section Titles === */
+h2.section{ margin-top:40px; font-size:28px; color:var(--accent); border-bottom:2px solid var(--accent); display:inline-block; padding-bottom:4px; }
 
+/* === Cards === */
+.cards{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-top:18px; }
+.card{ background:var(--card); padding:14px; border-radius:10px; box-shadow:0 6px 18px rgba(15,25,40,.05); }
+.card strong{ color:var(--accent); }
+
+/* === Capabilities Color Coding === */
+#capabilities .card:nth-child(1){ background-color:#e3f2fd; }
+#capabilities .card:nth-child(2){ background-color:#fff3e0; }
+#capabilities .card:nth-child(3){ background-color:#e8f5e9; font-size:14px; }
+#capabilities .card:nth-child(4){ background-color:#f3e5f5; font-size:14px; }
+
+/* === Certifications Placeholder === */
+#certifications .card{
+  min-height:120px; display:flex; align-items:center; justify-content:center;
+  font-size:16px; text-align:center; border:2px dashed #ccc; color:#777; background:#fff;
+}
+
+/* === Forms === */
+form{ display:grid; gap:10px; }
+input,textarea,select,button{ padding:10px; border-radius:8px; border:1px solid #dde4ee; }
+textarea{ min-height:120px; }
+
+/* === Client Portal === */
+#portal .card{ background-color:#f8f9fa; border:1px solid #ddd; }
+#portal .muted{ color:#555; }
+
+/* === Mobile-specific elements hidden by default === */
+.mobile-top-sections, .mobile-sidebar, .mobile-menu-toggle { display: none; }
+
+/* === Responsive === */
+@media(max-width:720px){
+  .sidebar, header { display: none; } /* Hide desktop sidebar and header on mobile */
+
+  .mobile-top-sections {
+    display:flex; flex-wrap:wrap; gap:6px; padding:10px 15px; background:#fff;
+    position:fixed; top:0; left:0; right:0; z-index:900;
+  }
+  .mobile-top-sections a {
+    padding:6px 10px; border-radius:6px; background:#f4f4f4; text-decoration:none; color:#222; font-weight:600;
+  }
+  .mobile-top-sections a.cta { background:var(--accent); color:#fff; }
+
+  .mobile-sidebar {
+    display:block; position:fixed; top:0; left:-240px; width:240px; height:100%;
+    background:#1a1a1a; color:#fff; padding:20px; transition:left 0.3s; z-index:1000;
+  }
+  .mobile-sidebar.show { left:0; }
+  .mobile-sidebar .logo img { width:180px; height:auto; margin-bottom:15px; }
+  .mobile-sidebar .contact-info { font-size:14px; line-height:1.6; }
+
+  .mobile-menu-toggle {
+    display:block; position:fixed; top:10px; right:15px; z-index:1001; font-size:28px;
+    background:none; border:none; cursor:pointer; color:#222;
+  }
+
+  main { margin-left:0; padding-top:100px; padding-left:15px; padding-right:15px; padding-bottom:40px; }
+  section { scroll-margin-top:70px; }
+}
 </style>
 </head>
 <body>
@@ -352,33 +242,33 @@ textarea{min-height:120px;}
 <!-- Main content -->
 <main>
   <!-- HOME / HERO -->
-<section class="hero" id="home">
-  <!-- Image Carousel FIRST -->
-  <div class="home-carousel" id="homeCarousel" aria-label="Home image carousel" tabindex="0">
-    <button class="ctrl prev" id="prevSlide" aria-label="Previous image">❮</button>
-    <div class="viewport">
-      <!-- The src is set by JS -->
-      <img id="carouselImage" src="" alt="MetLab service image">
+  <section class="hero" id="home">
+    <!-- Image Carousel FIRST -->
+    <div class="home-carousel" id="homeCarousel" aria-label="Home image carousel" tabindex="0">
+      <button class="ctrl prev" id="prevSlide" aria-label="Previous image">❮</button>
+      <div class="viewport">
+        <!-- The src is set by JS -->
+        <img id="carouselImage" src="" alt="MetLab service image">
+      </div>
+      <button class="ctrl next" id="nextSlide" aria-label="Next image">❯</button>
+
+      <!-- Non-overlapping, subtle indicators BELOW the image -->
+      <div class="indicators" id="carouselDots" aria-label="Image selection dots"></div>
+      <div class="caption" id="carouselCaption" aria-live="polite"></div>
     </div>
-    <button class="ctrl next" id="nextSlide" aria-label="Next image">❯</button>
 
-    <!-- Non-overlapping, subtle indicators BELOW the image -->
-    <div class="indicators" id="carouselDots" aria-label="Image selection dots"></div>
-    <div class="caption" id="carouselCaption" aria-live="polite"></div>
-  </div>
+    <!-- Text content AFTER the images -->
+    <h1>Reliable Mechanical, Metallurgical, Corrosion & Coating Testing</h1>
+    <p>Local laboratory support for <strong>Qatar’s oil & gas, marine, rail, and manufacturing sectors</strong> — precision testing, fast turnaround, and accredited results.</p>
+    <a class="cta" href="#capabilities">Explore Testing Capabilities</a>
 
-  <!-- Text content comes AFTER the images -->
-  <h1>Reliable Mechanical, Metallurgical, Corrosion & Coating Testing</h1>
-  <p>Local laboratory support for <strong>Qatar’s oil & gas, marine, rail, and manufacturing sectors</strong> — precision testing, fast turnaround, and accredited results.</p>
-  <a class="cta" href="#capabilities">Explore Testing Capabilities</a>
-
-  <div class="hero-highlights">
-    <div class="highlight-card"><h3>Accurate Results</h3><p>Advanced equipment and standard methods ensure repeatable precision.</p></div>
-    <div class="highlight-card"><h3>Client-Based OTP Access</h3><p>Secure, verified access to reports via client portal.</p></div>
-    <div class="highlight-card"><h3>Fast Turnaround</h3><p>Rapid testing and reporting to meet urgent industrial timelines.</p></div>
-    <div class="highlight-card"><h3>Accredited Standards</h3><p>Compliant with ASTM, ISO, and international specifications.</p></div>
-  </div>
-</section>
+    <div class="hero-highlights">
+      <div class="highlight-card"><h3>Accurate Results</h3><p>Advanced equipment and standard methods ensure repeatable precision.</p></div>
+      <div class="highlight-card"><h3>Client-Based OTP Access</h3><p>Secure, verified access to reports via client portal.</p></div>
+      <div class="highlight-card"><h3>Fast Turnaround</h3><p>Rapid testing and reporting to meet urgent industrial timelines.</p></div>
+      <div class="highlight-card"><h3>Accredited Standards</h3><p>Compliant with ASTM, ISO, and international specifications.</p></div>
+    </div>
+  </section>
 
   <!-- ABOUT -->
   <section id="about">
@@ -425,7 +315,7 @@ textarea{min-height:120px;}
         </ul>
       </div>
       <!-- Corrosion --> 
-      <div class="card" style="background-color:#e8f5e9;font-size:14px;"> 
+      <div class="card" style="background-color:#e8f5e9; font-size:14px;"> 
         <h3>Corrosion Testing</h3> 
         <ul> 
           <li>Salt Spray / Fog Test </li> 
@@ -440,7 +330,7 @@ textarea{min-height:120px;}
         </ul> 
       </div> 
       <!-- Coating --> 
-      <div class="card" style="background-color:#f3e5f5;font-size:14px;">
+      <div class="card" style="background-color:#f3e5f5; font-size:14px;">
         <h3>Coating Analysis</h3>
         <ul>
           <li>Coating Thickness Measurement</li>
@@ -596,7 +486,7 @@ document.addEventListener('click', (e) => {
   // Optional autoplay
   // setInterval(next, 5000);
 })();
-
 </script>
 </body>
 </html>
+
