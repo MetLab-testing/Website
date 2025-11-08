@@ -223,6 +223,59 @@ textarea{min-height:120px;}
 
   section { scroll-margin-top:70px; }
 }
+/* Controls lighter so they don't dominate */
+.home-carousel .ctrl {
+  background: rgba(255,255,255,0.6);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.home-carousel .ctrl:hover {
+  background: rgba(255,255,255,0.9);
+}
+
+/* Keep image tall enough but never awkwardly long */
+.home-carousel .viewport img {
+  max-height: 70vh;        /* never taller than 70% of viewport */
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Move indicators BELOW image and make them very subtle */
+.home-carousel .indicators {
+  position: static;         /* no absolute positioning => no overlap */
+  transform: none;
+  background: transparent;
+  padding: 8px 0 0;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+.home-carousel .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #cfcfcf;
+  opacity: 0.6;
+  border: 0;
+  cursor: pointer;
+}
+.home-carousel .dot.active {
+  background: var(--accent);
+  opacity: 0.9;
+}
+
+/* Tiny, unobtrusive caption like “Image 1 of 9” */
+.home-carousel .caption {
+  text-align: center;
+  font-size: 12px;
+  color: #777;
+  margin-top: 4px;
+}
+
+/* Add a little space under the carousel so text doesn't feel crowded */
+.home-carousel { margin-bottom: 16px; }
+
+
 </style>
 </head>
 <body>
@@ -279,29 +332,33 @@ textarea{min-height:120px;}
 <!-- Main content -->
 <main>
   <!-- HOME / HERO -->
-  <section class="hero" id="home">
-    <h1>Reliable Mechanical, Metallurgical, Corrosion & Coating Testing</h1>
-    <p>Local laboratory support for <strong>Qatar’s oil & gas, marine, rail, and manufacturing sectors</strong> — precision testing, fast turnaround, and accredited results.</p>
-    <a class="cta" href="#capabilities">Explore Testing Capabilities</a>
-
-    <!-- Image Carousel -->
-    <div class="home-carousel" id="homeCarousel" aria-label="Home image carousel" tabindex="0">
-      <button class="ctrl prev" id="prevSlide" aria-label="Previous image">❮</button>
-      <div class="viewport">
-        <!-- The src is set by JS -->
-        <img id="carouselImage" src="" alt="MetLab service image">
-      </div>
-      <button class="ctrl next" id="nextSlide" aria-label="Next image">❯</button>
-      <div class="indicators" id="carouselDots" aria-label="Image selection dots"></div>
+<section class="hero" id="home">
+  <!-- Image Carousel FIRST -->
+  <div class="home-carousel" id="homeCarousel" aria-label="Home image carousel" tabindex="0">
+    <button class="ctrl prev" id="prevSlide" aria-label="Previous image">❮</button>
+    <div class="viewport">
+      <!-- The src is set by JS -->
+      <img id="carouselImage" src="" alt="MetLab service image">
     </div>
+    <button class="ctrl next" id="nextSlide" aria-label="Next image">❯</button>
 
-    <div class="hero-highlights">
-      <div class="highlight-card"><h3>Accurate Results</h3><p>Advanced equipment and standard methods ensure repeatable precision.</p></div>
-      <div class="highlight-card"><h3>Client-Based OTP Access</h3><p>Secure, verified access to reports via client portal.</p></div>
-      <div class="highlight-card"><h3>Fast Turnaround</h3><p>Rapid testing and reporting to meet urgent industrial timelines.</p></div>
-      <div class="highlight-card"><h3>Accredited Standards</h3><p>Compliant with ASTM, ISO, and international specifications.</p></div>
-    </div>
-  </section>
+    <!-- Non-overlapping, subtle indicators BELOW the image -->
+    <div class="indicators" id="carouselDots" aria-label="Image selection dots"></div>
+    <div class="caption" id="carouselCaption" aria-live="polite"></div>
+  </div>
+
+  <!-- Text content comes AFTER the images -->
+  <h1>Reliable Mechanical, Metallurgical, Corrosion & Coating Testing</h1>
+  <p>Local laboratory support for <strong>Qatar’s oil & gas, marine, rail, and manufacturing sectors</strong> — precision testing, fast turnaround, and accredited results.</p>
+  <a class="cta" href="#capabilities">Explore Testing Capabilities</a>
+
+  <div class="hero-highlights">
+    <div class="highlight-card"><h3>Accurate Results</h3><p>Advanced equipment and standard methods ensure repeatable precision.</p></div>
+    <div class="highlight-card"><h3>Client-Based OTP Access</h3><p>Secure, verified access to reports via client portal.</p></div>
+    <div class="highlight-card"><h3>Fast Turnaround</h3><p>Rapid testing and reporting to meet urgent industrial timelines.</p></div>
+    <div class="highlight-card"><h3>Accredited Standards</h3><p>Compliant with ASTM, ISO, and international specifications.</p></div>
+  </div>
+</section>
 
   <!-- ABOUT -->
   <section id="about">
@@ -464,15 +521,16 @@ document.addEventListener('click', (e) => {
 
 // === Home Carousel ===
 (function(){
-  // Your filenames exactly as they exist (same folder as index.html)
+  // Your filenames (same folder as index.html)
   const files = [
     "Lab.png",
+    "team.png",
     "metallurgy.png",
-    "mechanical.jpg",
+    "mechanical.png",
     "corrosion.png",
     "coating.png",
     "SEM.png",
-    "chemical analysis.png", // space handled via encodeURI
+    "chemical analysis.png",
     "onsite.png"
   ];
 
@@ -480,6 +538,7 @@ document.addEventListener('click', (e) => {
   const prevBtn = document.getElementById('prevSlide');
   const nextBtn = document.getElementById('nextSlide');
   const dotsWrap = document.getElementById('carouselDots');
+  const captionEl = document.getElementById('carouselCaption');
 
   let i = 0;
 
@@ -493,8 +552,11 @@ document.addEventListener('click', (e) => {
   });
 
   function render(){
-    imgEl.src = encodeURI(files[i]); // supports filenames with spaces
+    imgEl.src = encodeURI(files[i]); // supports filename with spaces
+    // update dots
     [...dotsWrap.children].forEach((d, idx) => d.classList.toggle('active', idx === i));
+    // update light caption (no overlap)
+    if (captionEl) captionEl.textContent = `Image ${i + 1} of ${files.length}`;
   }
 
   function next(){ i = (i + 1) % files.length; render(); }
@@ -512,9 +574,10 @@ document.addEventListener('click', (e) => {
   // Start
   render();
 
-  // Optional autoplay (uncomment to enable)
+  // Optional autoplay
   // setInterval(next, 5000);
 })();
+
 </script>
 </body>
 </html>
