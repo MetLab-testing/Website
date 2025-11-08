@@ -17,6 +17,7 @@
 * {box-sizing:border-box;}
 body {margin:0;font-family:Inter, system-ui, Segoe UI, Roboto, Arial;line-height:1.5;color:#222;background:var(--bg);}
 a {text-decoration:none;color:inherit;}
+html{scroll-padding-top:80px;} /* Fix anchor scroll with fixed header */
 
 /* === Sidebar === */
 .sidebar{
@@ -49,9 +50,8 @@ header .navlinks .cta{background:var(--accent);color:#fff;}
 
 /* === Main Content === */
 main{margin-left:240px;padding:100px 40px 40px 40px;}
-html{scroll-padding-top:80px;} /* Fix anchor scroll */
 
-/* === Hero Section === */
+/* === Hero / Home Section === */
 .hero{margin-bottom:40px;}
 .hero h1{font-size:32px;margin:0 0 12px;color:var(--accent);}
 .hero p{margin:0 0 24px;color:var(--muted);font-size:16px;}
@@ -60,6 +60,57 @@ html{scroll-padding-top:80px;} /* Fix anchor scroll */
 .hero-highlights .highlight-card{background:#fff;border-radius:12px;padding:16px;text-align:center;box-shadow:0 6px 18px rgba(0,0,0,0.05);}
 .hero-highlights .highlight-card h3{margin:8px 0;font-size:18px;color:var(--accent);}
 .hero-highlights .highlight-card p{margin:0;color:#555;font-size:14px;}
+
+/* === Home Carousel === */
+.home-carousel {
+  position: relative;
+  width: 100%;
+  max-width: 920px;
+  margin: 24px auto 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #e6e9ee;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+.home-carousel .viewport img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+.home-carousel .ctrl {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 0;
+  background: #ffffffcc;
+  padding: 10px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 18px;
+}
+.home-carousel .ctrl:hover { background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.15); }
+.home-carousel .prev { left: 10px; }
+.home-carousel .next { right: 10px; }
+
+.home-carousel .indicators {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  background: #ffffffcc;
+  padding: 6px 10px;
+  border-radius: 999px;
+}
+.home-carousel .dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #bbb; border: 0; cursor: pointer;
+}
+.home-carousel .dot.active { background: var(--accent); }
 
 /* === Section Titles === */
 h2.section{margin-top:40px;font-size:28px;color:var(--accent);border-bottom:2px solid var(--accent);display:inline-block;padding-bottom:4px;}
@@ -171,7 +222,6 @@ textarea{min-height:120px;}
   }
 
   section { scroll-margin-top:70px; }
-
 }
 </style>
 </head>
@@ -191,6 +241,7 @@ textarea{min-height:120px;}
 <!-- Desktop Header Navigation -->
 <header>
   <nav class="navlinks">
+    <a href="#home">Home</a>
     <a href="#about">About</a>
     <a href="#capabilities">Capabilities</a>
     <a href="#certifications">Certifications & Approvals</a>
@@ -202,6 +253,7 @@ textarea{min-height:120px;}
 
 <!-- Mobile Top Sections -->
 <div class="mobile-top-sections">
+  <a href="#home">Home</a>
   <a href="#about">About</a>
   <a href="#capabilities">Capabilities</a>
   <a href="#certifications">Certifications</a>
@@ -222,15 +274,27 @@ textarea{min-height:120px;}
 </aside>
 
 <!-- Mobile Menu Toggle -->
-<button class="mobile-menu-toggle">&#9776;</button>
+<button class="mobile-menu-toggle" aria-label="Open menu">&#9776;</button>
 
 <!-- Main content -->
 <main>
-  <!-- HERO -->
+  <!-- HOME / HERO -->
   <section class="hero" id="home">
     <h1>Reliable Mechanical, Metallurgical, Corrosion & Coating Testing</h1>
     <p>Local laboratory support for <strong>Qatar’s oil & gas, marine, rail, and manufacturing sectors</strong> — precision testing, fast turnaround, and accredited results.</p>
     <a class="cta" href="#capabilities">Explore Testing Capabilities</a>
+
+    <!-- Image Carousel -->
+    <div class="home-carousel" id="homeCarousel" aria-label="Home image carousel" tabindex="0">
+      <button class="ctrl prev" id="prevSlide" aria-label="Previous image">❮</button>
+      <div class="viewport">
+        <!-- The src is set by JS -->
+        <img id="carouselImage" src="" alt="MetLab service image">
+      </div>
+      <button class="ctrl next" id="nextSlide" aria-label="Next image">❯</button>
+      <div class="indicators" id="carouselDots" aria-label="Image selection dots"></div>
+    </div>
+
     <div class="hero-highlights">
       <div class="highlight-card"><h3>Accurate Results</h3><p>Advanced equipment and standard methods ensure repeatable precision.</p></div>
       <div class="highlight-card"><h3>Client-Based OTP Access</h3><p>Secure, verified access to reports via client portal.</p></div>
@@ -250,40 +314,73 @@ textarea{min-height:120px;}
   </section>
 
   <!-- CAPABILITIES -->
-<section id="capabilities"> 
-  <h2 class="section">Testing Capabilities</h2> 
-  <div class="cards"> 
-    <!-- Mechanical --> 
-    <div class="card" style="background-color:#e3f2fd;">
-      <h3>Mechanical Testing</h3> 
-      <ul>
-        <li>Tensile Testing</li>
-        <li>Bend Testing (3-Point / 4-Point)</li>
-        <li>Charpy Impact Testing</li>
-        <li>Fracture Toughness (K_IC, J-Integral)</li>
-        <li>Hardness Tests (Rockwell, Vickers, Brinell)</li>
-        <li>Micro Hardness Testing</li> 
-        <li>Fatigue & Cyclic Loading</li>
-        <li>Compression Test</li> 
-        <li>Shear Test</li> 
-        <li>Through Thickness Tensile (Z-Tensile)</li>
-      </ul>
-    </div> 
-    <!-- Metallurgical --> 
-    <div class="card" style="background-color:#fff3e0;"> <h3>Metallurgical Analysis</h3> <ul> <li>Microstructure Examination</li> <li>Macro Examination</li> <li>Grain Size Analysis</li> <li>Prior Austenitic Grain Size (Carburizing & Oxidation Method)</li> <li>Failure Analysis & Fractography</li> <li>Inclusion & Defect Analysis</li> <li>Phase Analysis</li> <li>SEM & EDS Analysis</li> 
-    </ul> 
+  <section id="capabilities"> 
+    <h2 class="section">Testing Capabilities</h2> 
+    <div class="cards"> 
+      <!-- Mechanical --> 
+      <div class="card" style="background-color:#e3f2fd;">
+        <h3>Mechanical Testing</h3> 
+        <ul>
+          <li>Tensile Testing</li>
+          <li>Bend Testing (3-Point / 4-Point)</li>
+          <li>Charpy Impact Testing</li>
+          <li>Fracture Toughness (K_IC, J-Integral)</li>
+          <li>Hardness Tests (Rockwell, Vickers, Brinell)</li>
+          <li>Micro Hardness Testing</li> 
+          <li>Fatigue & Cyclic Loading</li>
+          <li>Compression Test</li> 
+          <li>Shear Test</li> 
+          <li>Through Thickness Tensile (Z-Tensile)</li>
+        </ul>
+      </div> 
+      <!-- Metallurgical --> 
+      <div class="card" style="background-color:#fff3e0;">
+        <h3>Metallurgical Analysis</h3>
+        <ul>
+          <li>Microstructure Examination</li>
+          <li>Macro Examination</li>
+          <li>Grain Size Analysis</li>
+          <li>Prior Austenitic Grain Size (Carburizing & Oxidation Method)</li>
+          <li>Failure Analysis & Fractography</li>
+          <li>Inclusion & Defect Analysis</li>
+          <li>Phase Analysis</li>
+          <li>SEM & EDS Analysis</li>
+        </ul>
+      </div>
+      <!-- Corrosion --> 
+      <div class="card" style="background-color:#e8f5e9;font-size:14px;"> 
+        <h3>Corrosion Testing</h3> 
+        <ul> 
+          <li>Salt Spray / Fog Test </li> 
+          <li>Electrochemical Testing (Potentiodynamic Polarization, EIS)</li>
+          <li>Stress Corrosion Cracking (SCC)</li>
+          <li>Pitting and Crevice Corrosion Tests</li>
+          <li>Intergranular Corrosion (IGC)</li>
+          <li>Hydrogen Induced Cracking (HIC)</li>
+          <li>Immersion / Chemical Exposure Tests</li>
+          <li>Accelerated Environmental Corrosion Simulation</li>
+          <li>Galvanic Corrosion Studies</li>
+        </ul> 
+      </div> 
+      <!-- Coating --> 
+      <div class="card" style="background-color:#f3e5f5;font-size:14px;">
+        <h3>Coating Analysis</h3>
+        <ul>
+          <li>Coating Thickness Measurement</li>
+          <li>Adhesion & Pull-off Tests</li>
+          <li>Hardness & Abrasion Resistance Tests</li>
+          <li>Cross-Cut / Scratch Resistance Test</li>
+          <li>Surface Roughness & Profile Analysis</li>
+          <li>Flexibility Testing</li>
+          <li>Cathodic Disbondment</li>
+          <li>Differential Scanning Calorimetry (DSC)</li>
+          <li>Peel Testing</li>
+          <li>Hot Water Soak</li>
+          <li>Visual & Microscopic Coating Inspection</li>
+        </ul>
+      </div>
     </div>
-    <!-- Corrosion --> 
-    <div class="card" style="background-color:#e8f5e9;font-size:14px;"> 
-      <h3>Corrosion Testing</h3> 
-      <ul> 
-        <li>Salt Spray / Fog Test </li> 
-        <li>Electrochemical Testing (Potentiodynamic Polarization, EIS)</li> <li>Stress Corrosion Cracking (SCC)</li> <li>Pitting and Crevice Corrosion Tests</li> <li>Intergranular Corrosion (IGC)</li> <li>Hydrogen Induced Cracking (HIC)</li> <li>Immersion / Chemical Exposure Tests</li> <li>Accelerated Environmental Corrosion Simulation</li> <li>Galvanic Corrosion Studies</li>
-      </ul> 
-    </div> 
-    <!-- Coating --> 
-    <div class="card" style="background-color:#f3e5f5;font-size:14px;"> <h3>Coating Analysis</h3> <ul> <li>Coating Thickness Measurement</li> <li>Adhesion & Pull-off Tests</li> <li>Hardness & Abrasion Resistance Tests</li> <li>Cross-Cut / Scratch Resistance Test</li> <li>Surface Roughness & Profile Analysis</li> <li>Flexibility Testing</li> <li>Cathodic Disbondment</li> <li>Differential Scanning Calorimetry (DSC)</li> <li>Peel Testing</li> <li>Hot Water Soak</li> <li>Visual & Microscopic Coating Inspection</li> </ul> </div> </div> </section>
-
+  </section>
 
   <!-- CERTIFICATIONS & APPROVALS -->
   <section id="certifications">
@@ -333,7 +430,7 @@ textarea{min-height:120px;}
 </main>
 
 <script>
-// Feedback form submission
+// === Feedback form submission ===
 document.getElementById('feedbackForm').addEventListener('submit', function(e){
   e.preventDefault();
   const name = this.name.value;
@@ -345,15 +442,16 @@ document.getElementById('feedbackForm').addEventListener('submit', function(e){
   const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nType: ${type}\nMessage:\n${message}`);
 
   window.location.href = `mailto:info.amsqatar@gmail.com?subject=${subject}&body=${body}`;
-  alert("Email sent. You will receive a response shortly.");
+  alert("Email draft opened in your mail app.");
   this.reset();
 });
 
-// Mobile sidebar toggle
+// === Mobile sidebar toggle ===
 const sidebar = document.querySelector('.mobile-sidebar');
 const toggleBtn = document.querySelector('.mobile-menu-toggle');
 
-toggleBtn.addEventListener('click', () => {
+toggleBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
   sidebar.classList.toggle('show');
 });
 
@@ -363,6 +461,61 @@ document.addEventListener('click', (e) => {
     sidebar.classList.remove('show');
   }
 });
+
+// === Home Carousel ===
+(function(){
+  // Your filenames exactly as they exist (same folder as index.html)
+  const files = [
+    "Lab.png",
+    "team.png",
+    "metallurgy.png",
+    "mechanical.png",
+    "corrosion.png",
+    "coating.png",
+    "SEM.png",
+    "chemical analysis.png", // space handled via encodeURI
+    "onsite.png"
+  ];
+
+  const imgEl = document.getElementById('carouselImage');
+  const prevBtn = document.getElementById('prevSlide');
+  const nextBtn = document.getElementById('nextSlide');
+  const dotsWrap = document.getElementById('carouselDots');
+
+  let i = 0;
+
+  // Build dots
+  files.forEach((_, idx) => {
+    const b = document.createElement('button');
+    b.className = 'dot' + (idx === 0 ? ' active' : '');
+    b.setAttribute('aria-label', 'Go to image ' + (idx + 1));
+    b.addEventListener('click', () => { i = idx; render(); });
+    dotsWrap.appendChild(b);
+  });
+
+  function render(){
+    imgEl.src = encodeURI(files[i]); // supports filenames with spaces
+    [...dotsWrap.children].forEach((d, idx) => d.classList.toggle('active', idx === i));
+  }
+
+  function next(){ i = (i + 1) % files.length; render(); }
+  function prev(){ i = (i - 1 + files.length) % files.length; render(); }
+
+  nextBtn.addEventListener('click', next);
+  prevBtn.addEventListener('click', prev);
+
+  // Keyboard support when carousel is focused
+  document.getElementById('homeCarousel').addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') next();
+    if (e.key === 'ArrowLeft')  prev();
+  });
+
+  // Start
+  render();
+
+  // Optional autoplay (uncomment to enable)
+  // setInterval(next, 5000);
+})();
 </script>
 </body>
 </html>
