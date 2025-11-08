@@ -47,7 +47,7 @@ main{ margin-left:240px; padding:100px 40px 40px 40px; }
 
 /* === Hero / Home Section === */
 .hero{ margin-bottom:40px; }
-.hero h1{ font-size:32px; margin:10px 0 12px; color:var(--accent); } /* smaller top margin */
+.hero h1{ font-size:32px; margin:10px 0 12px; color:var(--accent); }
 .hero p{ margin:0 0 24px; color:var(--muted); font-size:16px; }
 .hero .cta{ background:var(--accent); color:#fff; padding:10px 16px; border-radius:8px; font-weight:600; display:inline-block; }
 .hero-highlights{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-top:30px; }
@@ -55,29 +55,39 @@ main{ margin-left:240px; padding:100px 40px 40px 40px; }
 .hero-highlights .highlight-card h3{ margin:8px 0; font-size:18px; color:var(--accent); }
 .hero-highlights .highlight-card p{ margin:0; color:#555; font-size:14px; }
 
-/* === Home Carousel (clean, no-crop) === */
+/* === Home Carousel (supports FIT or FILL) === */
 .home-carousel {
   position: relative;
   width: 100%;
   max-width: 920px;
-  margin: -20px auto 16px; /* pull up slightly, small gap below */
+  margin: -16px auto 16px; /* pull up slightly, small gap below */
   border-radius: 12px;
   overflow: hidden;
   background: #fff;
   border: 1px solid #e6e9ee;
   box-shadow: 0 8px 24px rgba(0,0,0,0.06);
 }
+
+/* The “picture area” */
 .home-carousel .viewport {
-  background-color: #ffffff; /* clean frame behind letterboxing */
-}
-.home-carousel .viewport img {
-  display: block;
+  position: relative;
   width: 100%;
-  height: auto;
-  max-height: 70vh;         /* never taller than 70% of viewport */
-  object-fit: contain;      /* <-- key: show full image, no cropping */
+  height: 62vh;          /* base height for FILL mode */
+  max-height: 80vh;      /* don’t exceed viewport */
   background-color: #ffffff;
 }
+
+/* Image element defaults; JS will switch between FILL and FIT styles */
+.home-carousel .viewport img {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  display: block;
+  max-width: none;
+  max-height: none;
+}
+
+/* Arrows */
 .home-carousel .ctrl {
   position: absolute;
   top: 50%;
@@ -94,8 +104,9 @@ main{ margin-left:240px; padding:100px 40px 40px 40px; }
 .home-carousel .prev { left: 10px; }
 .home-carousel .next { right: 10px; }
 
+/* Dots BELOW image, subtle */
 .home-carousel .indicators {
-  position: static;         /* dots below image, no overlap */
+  position: static;
   transform: none;
   background: transparent;
   padding: 8px 0 0;
@@ -122,7 +133,7 @@ main{ margin-left:240px; padding:100px 40px 40px 40px; }
 
 /* Optional: allow a bit taller on very wide screens */
 @media (min-width: 1400px) {
-  .home-carousel .viewport img { max-height: 80vh; }
+  .home-carousel .viewport { height: 68vh; }
 }
 
 /* === Section Titles === */
@@ -154,12 +165,10 @@ textarea{ min-height:120px; }
 #portal .card{ background-color:#f8f9fa; border:1px solid #ddd; }
 #portal .muted{ color:#555; }
 
-/* === Mobile-specific elements hidden by default === */
+/* === Mobile === */
 .mobile-top-sections, .mobile-sidebar, .mobile-menu-toggle { display: none; }
-
-/* === Responsive === */
 @media(max-width:720px){
-  .sidebar, header { display: none; } /* Hide desktop sidebar and header on mobile */
+  .sidebar, header { display: none; }
 
   .mobile-top-sections {
     display:flex; flex-wrap:wrap; gap:6px; padding:10px 15px; background:#fff;
@@ -185,6 +194,9 @@ textarea{ min-height:120px; }
 
   main { margin-left:0; padding-top:100px; padding-left:15px; padding-right:15px; padding-bottom:40px; }
   section { scroll-margin-top:70px; }
+
+  /* Slightly shorter picture area on phones for ergonomics */
+  .home-carousel .viewport { height: 56vh; }
 }
 </style>
 </head>
@@ -246,13 +258,13 @@ textarea{ min-height:120px; }
     <!-- Image Carousel FIRST -->
     <div class="home-carousel" id="homeCarousel" aria-label="Home image carousel" tabindex="0">
       <button class="ctrl prev" id="prevSlide" aria-label="Previous image">❮</button>
-      <div class="viewport">
+      <div class="viewport" id="viewport">
         <!-- The src is set by JS -->
         <img id="carouselImage" src="" alt="MetLab service image">
       </div>
       <button class="ctrl next" id="nextSlide" aria-label="Next image">❯</button>
 
-      <!-- Non-overlapping, subtle indicators BELOW the image -->
+      <!-- Dots BELOW the image -->
       <div class="indicators" id="carouselDots" aria-label="Image selection dots"></div>
       <div class="caption" id="carouselCaption" aria-live="polite"></div>
     </div>
@@ -431,7 +443,9 @@ document.addEventListener('click', (e) => {
 
 // === Home Carousel ===
 (function(){
-  // Your filenames (same folder as index.html)
+  // TOGGLE: "fill" = no white bars (may crop), "fit" = no crop (may show bars)
+  const MODE = "fill"; // <-- set to "fit" if you prefer no cropping
+
   const files = [
     "Lab.png",
     "metallurgy.png",
@@ -444,6 +458,7 @@ document.addEventListener('click', (e) => {
   ];
 
   const imgEl = document.getElementById('carouselImage');
+  const viewport = document.getElementById('viewport');
   const prevBtn = document.getElementById('prevSlide');
   const nextBtn = document.getElementById('nextSlide');
   const dotsWrap = document.getElementById('carouselDots');
@@ -460,12 +475,52 @@ document.addEventListener('click', (e) => {
     dotsWrap.appendChild(b);
   });
 
+  function applyFillMode(){
+    // Fill picture area fully (no bars) => may crop
+    imgEl.style.width = "100%";
+    imgEl.style.height = "100%";
+    imgEl.style.objectFit = "cover";   // crop if needed
+    imgEl.style.left = "0";
+    imgEl.style.top = "0";
+  }
+
+  function applyFitMode(nw, nh){
+    // Show whole image (no crop) => container adapts to image ratio, minimal bars
+    imgEl.style.objectFit = "contain";
+    imgEl.style.width = "100%";
+    imgEl.style.height = "auto";
+
+    // Adjust viewport height to match image aspect ratio while respecting max-height
+    const vw = viewport.clientWidth || viewport.offsetWidth;
+    const computedHeight = vw * (nh / nw);
+
+    // Use min of computedHeight and 80vh
+    const maxH = Math.min(window.innerHeight * 0.8, computedHeight);
+    viewport.style.height = maxH + "px";
+  }
+
   function render(){
-    imgEl.src = encodeURI(files[i]); // supports filename with spaces
-    // update dots
-    [...dotsWrap.children].forEach((d, idx) => d.classList.toggle('active', idx === i));
-    // update light caption (no overlap)
-    if (captionEl) captionEl.textContent = `Image ${i + 1} of ${files.length}`;
+    const src = encodeURI(files[i]); // supports filename with spaces
+    // Set temporarily blank to trigger onload reliably
+    imgEl.removeAttribute('src');
+    // Once image loads, apply sizing
+    imgEl.onload = () => {
+      const nw = imgEl.naturalWidth || 1;
+      const nh = imgEl.naturalHeight || 1;
+
+      if (MODE === "fill") {
+        // Keep fixed viewport height, just fill it
+        viewport.style.height = (window.innerWidth >= 1400 ? "68vh" : (window.innerWidth <= 720 ? "56vh" : "62vh"));
+        applyFillMode();
+      } else {
+        applyFitMode(nw, nh);
+      }
+
+      // update dots & caption
+      [...dotsWrap.children].forEach((d, idx) => d.classList.toggle('active', idx === i));
+      if (captionEl) captionEl.textContent = `Image ${i + 1} of ${files.length}`;
+    };
+    imgEl.src = src;
   }
 
   function next(){ i = (i + 1) % files.length; render(); }
@@ -473,12 +528,7 @@ document.addEventListener('click', (e) => {
 
   nextBtn.addEventListener('click', next);
   prevBtn.addEventListener('click', prev);
-
-  // Keyboard support when carousel is focused
-  document.getElementById('homeCarousel').addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') next();
-    if (e.key === 'ArrowLeft')  prev();
-  });
+  window.addEventListener('resize', () => { render(); }); // keep sizing consistent on resize
 
   // Start
   render();
@@ -490,3 +540,4 @@ document.addEventListener('click', (e) => {
 </body>
 </html>
 
+ 
